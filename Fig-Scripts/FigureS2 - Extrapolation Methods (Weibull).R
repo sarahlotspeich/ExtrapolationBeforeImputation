@@ -1,7 +1,7 @@
 # //////////////////////////////////////////////////////////////////////
 # Replicate Figure S2 in Supplementary Materials  //////////////////////
 # Caption begins "With Weibull $X$, extrapolating Breslow's estimator // 
-# $\widehat{S}_0(t)$ beyond the largest uncensored value ... ///////////
+# $\widehat{S}_0(t)$ beyond the largest uncensored value ..." //////////
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages

@@ -1,7 +1,7 @@
 # //////////////////////////////////////////////////////////////////////
 # Replicate Figure S3 in Supplementary Materials  //////////////////////
 # Caption begins "With log-normal $X$, extrapolating Breslow's ///////// 
-# estimator $\widehat{S}_0(t)$ beyond the largest uncensored value ... /
+# estimator $\widehat{S}_0(t)$ beyond the largest uncensored value ..."/
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
