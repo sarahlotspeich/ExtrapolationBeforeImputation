@@ -13,6 +13,6 @@ generate_AtemEtAl2017 = function(n, censoring = "light", independent = TRUE) {
   c = rweibull(n = n, shape = 1, scale = q) # Random censoring mechanism
   w <- pmin(x, c) # Observed covariate value
   d <- as.numeric(x <= c) # "Event" indicator
-  dat = data.frame(z, w, y, d) # Construct dataset
+  dat = data.frame(z, w, y, d) # Construct data set
   return(dat)
 }
