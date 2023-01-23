@@ -34,7 +34,7 @@ res |>
                                 levels = c("drop-off", "exponential", "weibull"),
                                 labels = c("Immediate drop-off", 
                                            "Exponential extension", 
-                                           "Weibull extension"))) %>% 
+                                           "Weibull extension"))) |> 
   ggplot(aes(x = n, y = beta_aq, fill = extrap)) +
   geom_hline(yintercept = 0.5, linetype = 2) + 
   geom_boxplot(alpha = 0.7) + 

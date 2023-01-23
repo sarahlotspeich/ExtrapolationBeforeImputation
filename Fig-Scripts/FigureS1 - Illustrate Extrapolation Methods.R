@@ -152,7 +152,7 @@ data |>
   dplyr::mutate(extrapolation = factor(extrapolation, 
                                        levels = c("cf_surv", "drop_surv", "exp_surv", "weib_surv"),
                                        labels = c("Carry forward", "Immediate drop-off", "Exponential extension", "Weibull extension")),
-                surv = as.numeric(surv)) %>% 
+                surv = as.numeric(surv)) |>
   ggplot(aes(x = w, y = surv, linetype = extrapolation)) + 
   geom_rect(aes(xmin = Xtilde, xmax = max_W, ymin = 0, ymax = 1), 
             fill = "aliceblue", col = "aliceblue", alpha = 0.3) + 
