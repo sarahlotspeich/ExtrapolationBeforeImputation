@@ -47,7 +47,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
                           alpha_fc = NA, beta_fc = NA, gamma_fc = NA, 
                           alpha_aq = NA, beta_aq = NA, gamma_aq = NA, 
                           alpha_tr = NA, beta_tr = NA, gamma_tr = NA
-                          )
+    )
     
     # Loop over replicates 
     for (r in 1:reps) {
