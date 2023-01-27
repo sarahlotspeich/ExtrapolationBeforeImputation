@@ -1,7 +1,7 @@
 # //////////////////////////////////////////////////////////////////////
 # Run simulation results for Table 1 ///////////////////////////////////
 # Compare full cohort analysis to "gold standard" CMI based on true ////
-# survival function and adaptive quadrature vs. trapezoidal rule. //////
+# function and adaptive quadrature vs. trapezoidal rule for Weibull X //
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
