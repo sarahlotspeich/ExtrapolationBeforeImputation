@@ -97,6 +97,6 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
 # makes the simulations for this table slower than Table 1. It took ~ 3/
 # minutes to run 1 replication per setting MacBook Pro (M1) with 16GB //
 # RAM. Based on this, it would take ~50 hours to run 1000 replications /
-# per setting. We parallelized instead, using sim_seed = 114-123 and ///
-# running reps = 100 replications per seed. ////////////////////////////
+# per setting. We parallelized instead, using sim_seed = 114-133 and ///
+# running reps = 100 replications per seed. (See Table2_Parallel.R) ////
 # //////////////////////////////////////////////////////////////////////
