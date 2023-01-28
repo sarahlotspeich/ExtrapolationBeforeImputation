@@ -36,7 +36,6 @@ reps = 1 ## We used a total of 1000, but see NOTES below
 # Choose seed 
 sim_seed = 114
 
-tic("start")
 # Loop over different censoring rates: light, heavy, extra heavy
 for (censoring in c("light", "heavy", "extra_heavy")) {
   # And different sample sizes n = 100, 500, 1000, 2000
@@ -82,7 +81,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
     }
   }
 }
-toc()
+
 # //////////////////////////////////////////////////////////////////////
 # NOTES: When using the estimated survival function, we need to  ///////
 # to fit an imputation model or use an extrapolation method. This //////
