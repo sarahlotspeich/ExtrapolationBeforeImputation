@@ -55,8 +55,8 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
     # Loop over replicates 
     for (r in 1:reps) {
       # Generate data
-      dat = geerate_data(n = n, 
-                         censoring = censoring)
+      dat = generate_data(n = n, 
+                          censoring = censoring)
       
       # Save % censored
       sett_res$perc_censored[r] = 1 - mean(dat$d)
