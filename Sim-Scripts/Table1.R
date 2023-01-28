@@ -15,9 +15,13 @@ generate_AtemEtAl2017 = function(n, censoring = "light") {
   x = rweibull(n = n, shape = 0.75, scale = 0.25)  # To-be-censored covariate
   e = rnorm(n = n, mean = 0, sd = 1) # Random errors
   y = 1 + 0.5 * x + 0.25 * z + e # Continuous outcome
-  q = ifelse(censoring == "light", 2, 
-             ifelse(censoring == "heavy", 0.35, 0.05)) # Rate parameter for censoring
-  c = rweibull(n = n, shape = 1, scale = q) # Random censoring mechanism
+  q = ifelse(test = censoring == "light", 
+             yes = 0.5, ## ~ 12%
+             no = ifelse(test = censoring == "heavy", 
+                         yes = 2.9, ## ~ 41%
+                         no = 20) ## ~ 78%
+  ) # Rate parameter for censoring
+  c = rexp(n = n, rate = q) # Random censoring mechanism
   w = pmin(x, c) # Observed covariate value
   d = as.numeric(x <= c) # "Event" indicator
   dat = data.frame(x, z, w, y, d) # Construct data set
@@ -97,6 +101,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
 # NOTES: When using the true survival function, there is no need  //////
 # to fit an imputation model or use an extrapolation method. This //////
 # makes the simulations for this table quicker than other tables. //////
-# In ~9 minutes, we were able to run 1000 replications per setting /////
-# on a 2020 MacBook Pro (M1) with 16GB RAM. ////////////////////////////
+# It took <1 second to run 1 replication per setting MacBook Pro (M1) //
+# with 16GB RAM. Based on this, it would take ~11 minutes to run 1000 //
+# replications per setting. ////////////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////
