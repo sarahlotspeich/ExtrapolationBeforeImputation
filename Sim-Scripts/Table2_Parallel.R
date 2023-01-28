@@ -9,16 +9,21 @@
 ## Run once: devtools::install_github("sarahlotspeich/imputeCensRd)
 library(imputeCensRd) # To impute censored covariates 
 
-# Data generation function 
-## This setting is new; it was created for this manuscript to consider a non-Weibull X
-generate_data = function(n, censoring = "light") {
+# Data generation function based on Atem et al. (2017)'s "independent censoring" censoringing
+## We note that they generate data from a Weibull with shape = 1 and scale varied, 
+## But this is equivalent to an exponential (used here).
+generate_AtemEtAl2017 = function(n, censoring = "light") {
   z = rbinom(n = n, size = 1, prob = 0.5) # Uncensored covariate
   x = rweibull(n = n, shape = 0.75, scale = 0.25)  # To-be-censored covariate
   e = rnorm(n = n, mean = 0, sd = 1) # Random errors
   y = 1 + 0.5 * x + 0.25 * z + e # Continuous outcome
-  q = ifelse(censoring == "light", 2, 
-             ifelse(censoring == "heavy", 0.35, 0.05)) # Rate parameter for censoring
-  c = rweibull(n = n, shape = 1, scale = q) # Random censoring mechanism
+  q = ifelse(test = censoring == "light", 
+             yes = 0.5, ## ~ 12%
+             no = ifelse(test = censoring == "heavy", 
+                         yes = 2.9, ## ~ 41%
+                         no = 20) ## ~ 78%
+  ) # Rate parameter for censoring
+  c = rexp(n = n, rate = q) # Random censoring mechanism
   w = pmin(x, c) # Observed covariate value
   d = as.numeric(x <= c) # "Event" indicator
   dat = data.frame(x, z, w, y, d) # Construct data set
