@@ -52,6 +52,7 @@ beta_res |>
                     name = TeX("Method of Extrapolation for $\\hat{S}_{0}(t)$")) +
   xlab("Sample Size") +
   ylab(TeX("Parameter Estimate $\\hat{\\beta}$")) 
+# Save as 1000 wide x 1000 tall
 
 ## Note: 19 rows will be removed because beta is NA 
 beta_res |> 
@@ -59,4 +60,4 @@ beta_res |>
   summarize(reps_na = sum(is.na(beta))) |> 
   filter(reps_na > 0)
 ## These are the instances where the Weibull extension did not converge
-## There were <= 4 instances per setting (< 0.5%)
+## There were <= 4 instances per setting (<)
