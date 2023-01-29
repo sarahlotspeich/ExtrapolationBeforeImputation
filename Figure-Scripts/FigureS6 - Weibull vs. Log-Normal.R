@@ -37,11 +37,11 @@ for (cens in 1:3) {
 }
 
 # Add column with factor for censoring rate
-Wn_df = data.frame(Censoring = rep(x = c("Light", "Moderate", "Heavy"), 
+Wn_df = data.frame(Censoring = rep(x = c("Light", "Heavy", "Extra Heavy"), 
                                    each = 1000), 
                    Wn) |> 
   mutate(Censoring = factor(Censoring, 
-                            levels = c("Light", "Moderate", "Heavy")))
+                            levels = c("Light", "Heavy", "Extra Heavy")))
 
 # Create plot 
 x_lower = 0
@@ -76,11 +76,11 @@ for (cens in 1:3) {
 }
 
 # Add column with factor for censoring rate
-Wn_df = data.frame(Censoring = rep(x = c("Light", "Moderate", "Heavy"), 
+Wn_df = data.frame(Censoring = rep(x = c("Light", "Heavy", "Extra Heavy"), 
                                    each = 1000), 
                    Wn) |> 
   mutate(Censoring = factor(Censoring, 
-                            levels = c("Light", "Moderate", "Heavy")))
+                            levels = c("Light", "Heavy", "Extra Heavy")))
 
 # Create plot 
 x_lower = 0
