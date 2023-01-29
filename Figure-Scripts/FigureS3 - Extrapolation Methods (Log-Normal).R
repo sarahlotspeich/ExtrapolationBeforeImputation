@@ -6,6 +6,7 @@
 
 # Load packages
 library(dplyr) # For data wrangling
+library(tidyr) # To transform data
 library(ggplot2) # To create plots
 library(latex2exp) # To create LaTex labels for plots
 library(wesanderson) # For colors
