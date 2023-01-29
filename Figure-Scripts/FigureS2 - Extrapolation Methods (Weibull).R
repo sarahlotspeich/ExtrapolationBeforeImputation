@@ -60,4 +60,4 @@ beta_res |>
   summarize(reps_na = sum(is.na(beta))) |> 
   filter(reps_na > 0)
 ## These are the instances where the Weibull extension did not converge
-## There were <= 4 instances per setting (<)
+## There were <= 4 instances per setting (<0.5%)
