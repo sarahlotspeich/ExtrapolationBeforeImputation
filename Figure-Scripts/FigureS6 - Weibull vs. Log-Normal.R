@@ -99,3 +99,4 @@ plot_b = ggplot() +
 # Put plots A and B side-by-side  //////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 ggpubr::ggarrange(plot_a, plot_b, common.legend = TRUE, ncol = 1, labels = "AUTO")
+# Save as 1000 wide x 700 tall
