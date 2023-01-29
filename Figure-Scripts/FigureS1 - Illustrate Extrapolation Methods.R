@@ -161,4 +161,4 @@ data |>
   xlab(label = TeX("$t$")) + ylab(label = TeX("$\\hat{S}(t)$")) + 
   scale_linetype(name = "Extrapolation Method:")
   
-# Save as 1000 wide x 500 tall
+# Save as 1000 wide x 600 tall
