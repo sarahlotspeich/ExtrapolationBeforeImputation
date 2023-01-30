@@ -13,14 +13,14 @@ library(imputeCensRd) # To impute censored covariates
 ## This setting is new; it was created for this manuscript to consider a non-Weibull X
 generate_data = function(n, censoring = "light") {
   z = rbinom(n = n, size = 1, prob = 0.5) # Uncensored covariate
-  x = rweibull(n = n, shape = 0.75, scale = 0.25)  # To-be-censored covariate
+  x = rlnorm(n = n, meanlog = 0, sdlog = 0.5) # To-be-censored covariate
   e = rnorm(n = n, mean = 0, sd = 1) # Random errors
   y = 1 + 0.5 * x + 0.25 * z + e # Continuous outcome
   q = ifelse(test = censoring == "light", 
-             yes = 0.5, ## ~ 12%
+             yes = 0.2, # ~ 20% 
              no = ifelse(test = censoring == "heavy", 
-                         yes = 2.9, ## ~ 41%
-                         no = 20) ## ~ 78%
+                         yes = 0.4, # ~35%
+                         no = 1.67) # ~79%
   ) # Rate parameter for censoring
   c = rexp(n = n, rate = q) # Random censoring mechanism
   w = pmin(x, c) # Observed covariate value
@@ -84,9 +84,9 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
 # //////////////////////////////////////////////////////////////////////
 # NOTES: When using the estimated survival function, we need to  ///////
 # to fit an imputation model or use an extrapolation method. This //////
-# makes the simulations for this table slower than Table 1. It took ~10/
+# makes the simulations for this table slower than Table 1. It took ~30/
 # minutes to run 1 replication per setting MacBook Pro (M1) with 16GB //
-# RAM. Based on this, it would take ~159 hours to run 1000 replications/
+# RAM. Based on this, it would take ~519 hours to run 1000 replications/
 # per setting. We parallelized instead, using sim_seed = 114-133 and ///
 # running reps = 50 replications per seed. (See FigureS3_Parallel.R) ///
 # //////////////////////////////////////////////////////////////////////
