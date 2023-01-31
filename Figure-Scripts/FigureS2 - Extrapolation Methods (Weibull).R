@@ -49,10 +49,12 @@ beta_res |>
   theme_minimal(base_size = 14) + 
   theme(legend.position = "top") +
   scale_fill_manual(values = wes_palette("Zissou1", n = 5, type = "discrete")[c(1,3,5)],
-                    name = TeX("Method of Extrapolation for $\\hat{S}_{0}(t)$")) +
+                    name = "Extrapolation Method:") +
   xlab("Sample Size") +
   ylab(TeX("Parameter Estimate $\\hat{\\beta}$")) 
-# Save as 1000 wide x 1000 tall
+
+# Save as 10" wide x 10" tall
+ggsave("FigureS2.png", width = 10, height = 10, units = "in")
 
 ## Note: 19 rows will be removed because beta is NA 
 beta_res |> 
