@@ -49,15 +49,18 @@ beta_res |>
   theme_minimal(base_size = 14) + 
   theme(legend.position = "top") +
   scale_fill_manual(values = wes_palette("Zissou1", n = 5, type = "discrete")[c(1,3,5)],
-                    name = TeX("Method of Extrapolation for $\\hat{S}_{0}(t)$")) +
+                    name = "Extrapolation Method") +
+                    #name = TeX("Method of Extrapolation for $\\hat{S}_{0}(t)$")) +
   xlab("Sample Size") +
   ylab(TeX("Parameter Estimate $\\hat{\\beta}$")) 
-# Save as 1000 wide x 1000 tall
 
-## Note: 19 rows will be removed because beta is NA 
+# Save as 1000 wide x 1000 tall
+ggsave("FigureS3.png", width = 10, height = 10, units = "in")
+
+## Note: 4 rows will be removed because beta is NA
 beta_res |> 
   group_by(extrap, censoring, n) |> 
   summarize(reps_na = sum(is.na(beta))) |> 
   filter(reps_na > 0)
 ## These are the instances where the Weibull extension did not converge
-## There were <= 4 instances per setting (<0.5%)
+## There were <= 2 instances per setting (<0.5%)
