@@ -49,7 +49,7 @@ beta_res |>
   theme_minimal(base_size = 14) + 
   theme(legend.position = "top") +
   scale_fill_manual(values = wes_palette("Zissou1", n = 5, type = "discrete")[c(1,3,5)],
-                    name = "Extrapolation Method") +
+                    name = "Extrapolation Method:") +
   xlab("Sample Size") +
   ylab(TeX("Parameter Estimate $\\hat{\\beta}$")) 
 
