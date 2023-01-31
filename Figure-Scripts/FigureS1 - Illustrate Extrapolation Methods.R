@@ -160,5 +160,6 @@ data |>
   theme_minimal(base_size = 12) + theme(legend.position = "top") + 
   xlab(label = TeX("$t$")) + ylab(label = TeX("$\\hat{S}(t)$")) + 
   scale_linetype(name = "Extrapolation Method:")
-  
-# Save as 1000 wide x 600 tall
+
+# Save as 10" wide x 6" tall
+ggsave("FigureS3.png", width = 10, height = 6, units = "in")
