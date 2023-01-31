@@ -162,4 +162,4 @@ data |>
   scale_linetype(name = "Extrapolation Method:")
 
 # Save as 10" wide x 6" tall
-ggsave("FigureS3.png", width = 10, height = 6, units = "in")
+ggsave("FigureS1.png", width = 10, height = 6, units = "in")
