@@ -89,5 +89,5 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
 # ~1 second to run 1 replication per setting MacBook Pro (M1) with 16GB/
 # RAM. Based on this, it would take ~19 minutes to run 1000 replications
 # per setting. We parallelized instead, using sim_seed = 114-133 and ///
-# running reps = 50 replications per seed. (See FigureS5_Parallel.R) ///
+# running reps = 50 replications per seed. /////////////////////////////
 # //////////////////////////////////////////////////////////////////////
