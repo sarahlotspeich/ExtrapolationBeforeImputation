@@ -1,4 +1,4 @@
-# It’s integral: Replacing the trapezoidal rule to remove bias and correctly impute censored covariates with their conditional means {.tabset}
+# It’s integral: Replacing the trapezoidal rule to remove bias and correctly impute censored covariates with their conditional means
 
 This repository contains R code and simulation data to reproduce results from the manuscript by Lotspeich and Garcia (2022+).
 
@@ -9,6 +9,19 @@ This repository contains R code and simulation data to reproduce results from th
   - [Script (Run Simulations)](Sim-Scripts/Table1.R)
   - [Script (Make Figure)](Table-Scripts/Table1-Gold-Standard.R)
   - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
+
+
+![**Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.](Tables/Table2.png)
+
+  - [Script (Run Simulations)](Sim-Scripts/Table2.R)
+  - [Script (Make Figure)](Table-Scripts/Table2-Estimated-WeibullX.R)
+  - [Data (Simulation Results)](Table-Data/data_Table2.csv)  
+
+![**Table S1.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.](Tables/TableS1.png)
+
+  - [Script (Run Simulations)](Sim-Scripts/TableS1.R)
+  - [Script (Make Figure)](Table-Scripts/TableS1-Estimated-LogNormal.R)
+  - [Data (Simulation Results)](Table-Data/data_TableS1.csv)  
 
 ## Figures 
 
@@ -27,8 +40,8 @@ This repository contains R code and simulation data to reproduce results from th
 `R` scripts to reproduce all simulated results can be found in the `Sim-Scripts/` subdirectory. 
 
   -  `Table1.R`: Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature versus the trapezoidal rule.
-  -  `Table2.R`: Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
-  -  `TableS1.R`: Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule. 
+  -  `Table2.R`: 
+  -  `TableS1.R`: 
   -  `FigureS1.R`: Illustration of the four extrapolation methods for a step survival function $\widehat{S}(t)$ in simulated data.
   -  `FigureS2.R`: With Weibull $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with the Weibull extension offered the lowest bias and best efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
   -  `FigureS3.R`: With log-normal $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
