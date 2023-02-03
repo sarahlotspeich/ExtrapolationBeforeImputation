@@ -2,6 +2,13 @@
 
 This repository contains R code and simulation data to reproduce results from the manuscript by Lotspeich and Garcia (2022+).
 
+## Tables 
+
+[Script (Simulations)](Sim-Scripts/Table1.R)
+[Script (Table)](Table-Scripts/Table1.R)
+
+## Figures 
+
 ## `Sim-Scripts/`: Scripts to reproduce simulations 
 
 `R` scripts to reproduce all simulated results can be found in the `Sim-Scripts/` subdirectory. 
