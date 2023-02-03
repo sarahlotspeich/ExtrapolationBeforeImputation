@@ -2,6 +2,23 @@
 
 This repository contains R code and simulation data to reproduce results from the manuscript by Lotspeich and Garcia (2022+).
 
+## Tables 
+
+[Script (Simulations)](Sim-Scripts/Table1.R)
+[Script (Table)](Table-Scripts/Table1.R)
+
+## Figures 
+
+![**Figure S1.** Illustration of the four extrapolation methods for a step survival function $\widehat{S}(t)$ in simulated data.](Figures/FigureS1.png)
+
+  - [Script (Make Figure)](Figure-Scripts/FigureS1 - Illustrate Extrapolation Methods.R)
+  
+![**Figure S2.** With Weibull $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with the Weibull extension offered the lowest bias and best efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.](Figures/FigureS2.png)
+
+  - [Script (Run Simulations)](Sim-Scripts/FigureS2.R)
+  - [Script (Make Figure)](Figure-Scripts/FigureS2 - Extrapolation Methods (Weibull).R)
+  - [Data (Simulation Results)](Figure-Data/data_FigureS2.R)  
+
 ## `Sim-Scripts/`: Scripts to reproduce simulations 
 
 `R` scripts to reproduce all simulated results can be found in the `Sim-Scripts/` subdirectory. 
