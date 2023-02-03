@@ -8,7 +8,7 @@ This repository contains R code and simulation data to reproduce results from th
 
   - [Script (Run Simulations)](Sim-Scripts/Table1.R)
   - [Script (Make Figure)](Table-Scripts/Table1-Gold-Standard.R)
-  - [Data (Simulation Results)](Table-Data/data_Table1.R)  
+  - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
 
 ## Figures 
 
