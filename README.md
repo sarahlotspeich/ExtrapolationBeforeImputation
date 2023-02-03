@@ -4,7 +4,8 @@ This repository contains R code and simulation data to reproduce results from th
 
 ## Tables 
 
-![**Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature versus the trapezoidal rule.](Tables/Table1.png)
+**Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature versus the trapezoidal rule.
+<!-- ![](Tables/Table1.png) -->
 
   - [Script (Run Simulations)](Sim-Scripts/Table1.R)
   - [Script (Make Figure)](Table-Scripts/Table1-Gold-Standard.R)
