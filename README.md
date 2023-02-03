@@ -9,6 +9,12 @@ This repository contains R code and simulation data to reproduce results from th
 
 ## Figures 
 
+![**Figure S1.** Illustration of the four extrapolation methods for a step survival function $\widehat{S}(t)$ in simulated data.](Figures/FigureS1.png)
+
+  - [Script (Run Simulations)](Sim-Scripts/FigureS1.R)
+  - [Script (Make Figure)](Figure-Scripts/FigureS1.R)
+  - [Data (Simulation Results)](Figure-Data/data_FigureS1.R)
+
 ## `Sim-Scripts/`: Scripts to reproduce simulations 
 
 `R` scripts to reproduce all simulated results can be found in the `Sim-Scripts/` subdirectory. 
