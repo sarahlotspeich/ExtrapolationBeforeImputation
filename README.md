@@ -11,14 +11,15 @@ This repository contains R code and simulation data to reproduce results from th
   - [Script (Make Figure)](Table-Scripts/Table1-Gold-Standard.R)
   - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
 
-
-![**Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.](Tables/Table2.png)
+**Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+<!-- ![](Tables/Table2.png) -->
 
   - [Script (Run Simulations)](Sim-Scripts/Table2.R)
   - [Script (Make Figure)](Table-Scripts/Table2-Estimated-WeibullX.R)
   - [Data (Simulation Results)](Table-Data/data_Table2.csv)  
 
-![**Table S1.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.](Tables/TableS1.png)
+**Table S1.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+<!-- ![](Tables/TableS1.png) -->
 
   - [Script (Run Simulations)](Sim-Scripts/TableS1.R)
   - [Script (Make Figure)](Table-Scripts/TableS1-Estimated-LogNormal.R)
