@@ -1,6 +1,6 @@
 # //////////////////////////////////////////////////////////////////////
-# Run simulation results for Table 1 ///////////////////////////////////
-# Compare full cohort analysis to "gold standard" CMI based on true ////
+# Run simulation results for Table 2 ///////////////////////////////////
+# Compare full cohort analysis to CMI based on estimated survival / ////
 # function and adaptive quadrature vs. trapezoidal rule for Weibull X //
 # //////////////////////////////////////////////////////////////////////
 
@@ -10,6 +10,8 @@
 library(imputeCensRd) # To impute censored covariates 
 
 # Data generation function based on Atem et al. (2017)'s "independent censoring" censoring
+## We note that they generate data from a Weibull with shape = 1 and scale varied, 
+## But this is equivalent to an exponential (used here).
 generate_AtemSMMR = function(n, censoring = "light") {
   z = rbinom(n = n, size = 1, prob = 0.5) # Uncensored covariate
   x = rweibull(n = n, shape = 0.75 - 0.25 * z, scale = 0.25)  # To-be-censored covariate
@@ -28,13 +30,8 @@ generate_AtemSMMR = function(n, censoring = "light") {
   return(dat)
 }
 
-# Write a function for the true survival function used to generate Weibull X 
-trueSURV = function(q, z) {
-  pweibull(q = q, shape = 0.75, scale = 0.25, lower.tail = FALSE)
-}
-
 # Set the number of replicates per setting
-reps = 1000
+reps = 1 ## We used a total of 1000, but see NOTES below
 
 # Choose seed 
 sim_seed = 114
@@ -57,7 +54,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
     for (r in 1:reps) {
       # Generate data
       dat = generate_AtemSMMR(n = n, 
-                                  censoring = censoring)
+                              censoring = censoring)
       
       # Save % censored
       sett_res$perc_censored[r] = 1 - mean(dat$d)
@@ -68,10 +65,11 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       
       # Method 2: CMI using adaptive quadrature 
       ## Create imputed dataset
-      imp_dat = cmi_custom(W = "w", Delta = "d", Z = "z", data = dat, 
-                           useSURV = trueSURV, trapezoidal_rule = FALSE)
+      imp_dat = cmi_sp(W = "w", Delta = "d", Z = "z", data = dat, 
+                       trapezoidal_rule = FALSE, ## approximate integral using adaptive quadrature
+                       surv_between = "cf", ## Breslow's estimator is carry-forward interpolated
+                       surv_beyond = "w") ## and extrapolated using the Weibull extension
       ## Check that imputation was successful 
-      ## (it always is when using trueSURV)
       if (imp_dat$code) {
         ## Fit model to imputed dataset
         fit_aq = lm(y ~ imp + z, data = imp_dat$imputed_data)
@@ -79,8 +77,10 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       }
       
       # Method 3: CMI using trapezoidal rule
-      imp_dat = cmi_custom(W = "w", Delta = "d", Z = "z", data = dat, 
-                           useSURV = trueSURV, trapezoidal_rule = TRUE)
+      imp_dat = cmi_sp(W = "w", Delta = "d", Z = "z", data = dat, 
+                       trapezoidal_rule = TRUE, ## approximate integral using adaptive quadrature
+                       surv_between = "cf", ## Breslow's estimator is carry-forward interpolated
+                       surv_beyond = "w") ## and extrapolated using the Weibull extension
       ## Check that imputation was successful 
       ## (it always is when using trueSURV)
       if (imp_dat$code) {
@@ -98,10 +98,11 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
 }
 
 # //////////////////////////////////////////////////////////////////////
-# NOTES: When using the true survival function, there is no need  //////
+# NOTES: When using the estimated survival function, we need to  ///////
 # to fit an imputation model or use an extrapolation method. This //////
-# makes the simulations for this table quicker than other tables. //////
-# It took <1 second to run 1 replication per setting MacBook Pro (M1) //
-# with 16GB RAM. Based on this, it would take ~11 minutes to run 1000 //
-# replications per setting. ////////////////////////////////////////////
+# makes the simulations for this table slower than Table 1. It took ~3 /
+# minutes to run 1 replication per setting MacBook Pro (M1) with 16GB //
+# RAM. Based on this, it would take ~50 hours to run 1000 replications /
+# per setting. We parallelized instead, using sim_seed = 114-133 and ///
+# running reps = 50 replications per seed. /////////////////////////////
 # //////////////////////////////////////////////////////////////////////
