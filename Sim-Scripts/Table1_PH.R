@@ -31,8 +31,8 @@ generate_AtemSMMR = function(n, censoring = "light") {
 # Write a function for the true survival function used to generate Weibull X 
 trueSURV = function(q, z) {
   pweibull(q = q, 
-           shape = 0.75 - 0.25 * z, 
-           scale = 0.25, 
+           shape = 0.75, 
+           scale = 0.25 + 0.25 * z,
            lower.tail = FALSE)
 }
 
