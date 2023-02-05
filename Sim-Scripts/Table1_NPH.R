@@ -30,7 +30,10 @@ generate_AtemSMMR = function(n, censoring = "light") {
 
 # Write a function for the true survival function used to generate Weibull X 
 trueSURV = function(q, z) {
-  pweibull(q = q, shape = 0.75 - 0.25 * z, scale = 0.25, lower.tail = FALSE)
+  pweibull(q = q, 
+           shape = 0.75 - 0.25 * z, 
+           scale = 0.25, 
+           lower.tail = FALSE)
 }
 
 # Set the number of replicates per setting
@@ -57,7 +60,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
     for (r in 1:reps) {
       # Generate data
       dat = generate_AtemSMMR(n = n, 
-                                  censoring = censoring)
+                              censoring = censoring)
       
       # Save % censored
       sett_res$perc_censored[r] = 1 - mean(dat$d)
