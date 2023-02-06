@@ -1,7 +1,7 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Figure S1 in Supplementary Materials  //////////////////////
-# Caption begins "With Weibull $X$, extrapolating Breslow's estimator // 
-# $\widehat{S}_0(t)$ beyond the largest uncensored value ..." //////////
+# Replicate Figure S2 in Supplementary Materials  //////////////////////
+# Caption begins "We explored light (~17%), heavy (~49%), and extra ////
+# heavy (~82%) censoring in Weibull $X$, induced by generating ... /////
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
