@@ -1,5 +1,5 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Figure S2 in Supplementary Materials  //////////////////////
+# Replicate Figure S3 in Supplementary Materials  //////////////////////
 # Caption begins "With Weibull $X$, extrapolating Breslow's estimator // 
 # $\widehat{S}_0(t)$ beyond the largest uncensored value ..." //////////
 # //////////////////////////////////////////////////////////////////////
@@ -16,7 +16,7 @@ library(wesanderson) # For colors
 # //////////////////////////////////////////////////////////////////////
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Figure-Data/data_FigureS2.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Figure-Data/data_FigureS2_PH.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with 100 reps per seed, per setting)
 ## This information is captured in the "sim" variable which is of the form "seed-replicate." 
 
@@ -54,12 +54,12 @@ beta_res |>
   ylab(TeX("Parameter Estimate $\\hat{\\beta}$")) 
 
 # Save as 10" wide x 10" tall
-ggsave("FigureS2.png", width = 10, height = 10, units = "in")
+ggsave("FigureS3.png", width = 10, height = 10, units = "in")
 
-## Note: 19 rows will be removed because beta is NA 
+## Note: 24 rows will be removed because beta is NA 
 beta_res |> 
   group_by(extrap, censoring, n) |> 
   summarize(reps_na = sum(is.na(beta))) |> 
   filter(reps_na > 0)
 ## These are the instances where the Weibull extension did not converge
-## There were <= 4 instances per setting (<0.5%)
+## There were <= 6 instances per setting (<=0.6%)
