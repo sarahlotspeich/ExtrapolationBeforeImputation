@@ -6,23 +6,19 @@
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
-library(dplyr) # For data wrangling
+library(dplyr) # To wrangle data
 library(tidyr) # To gather wide tables
 library(kableExtra) # To format pretty tables
+library(ggplot2) # To make pretty plots
 
 # //////////////////////////////////////////////////////////////////////
 # Read in simulation results from GitHub ///////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table1.csv")
-## Note: Simulations were run in parallel on random seeds 114-123 (with 100 reps per seed, per setting)
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table1_PH.csv")
+## Note: Simulations were run on random seed 114 (with 1000 reps per seed, per setting)
 ## This information is captured in the "sim" variable which is of the form seed-replicate. 
-
-# Calculate average % censoring per censoring setting
-res |> 
-  group_by(censoring) |> 
-  summarize(avg_perc_censored = mean(perc_censored))
 
 # //////////////////////////////////////////////////////////////////////
 # Summarize simulation results by setting //////////////////////////////
@@ -39,20 +35,27 @@ res_summ_long = res |>
          param = sub("_.*", "", param_calc),
          censoring = factor(x = censoring,
                             levels = c("light", "heavy", "extra_heavy"), 
-                            labels = c("Light", "Heavy", "Extra Heavy"))) |> 
-  group_by(censoring, n, calc, param) |> 
-  summarize(bias = mean(est - ifelse(test = param == "alpha", 
-                                     yes = 1,
-                                     no = ifelse(test = param == "beta", 
-                                                 yes = 0.5, 
-                                                 no = 0.25
-                                                 ))),
-            se = sd(est))
+                            labels = c("Light", "Heavy", "Extra Heavy")),
+         truth = ifelse(test = param == "alpha", 
+                        yes = 1,
+                        no = ifelse(test = param == "beta", 
+                                    yes = 0.5, 
+                                    no = 0.25)
+                        ) 
+         ) |> 
+  group_by(censoring, n, calc, param, truth) |> 
+  summarize(bias = mean(est - truth),
+            se = sd(est)) |> 
+  mutate(perc_bias = paste0("($", format(round(bias / truth * 100, 2), nsmall = 2), "$)"),
+         bias = paste0("$", format(round(bias, 3), nsmall = 3), "$")
+         ) |> 
+  ungroup() |> 
+  select(param, censoring, n, calc, bias, perc_bias, se)
 
 # Then pivot them back out by method 
 res_summ_wide = res_summ_long |> 
   pivot_wider(names_from = calc, 
-              values_from = c("bias", "se")) |> 
+              values_from = c("bias", "perc_bias", "se")) |> 
   arrange(param, censoring) |> 
   mutate(`re_Adaptive Quadrature` = `se_Full Cohort` ^ 2 / `se_Adaptive Quadrature` ^ 2,
          `re_Trapezoidal Rule` = `se_Full Cohort` ^ 2 / `se_Trapezoidal Rule` ^ 2,
@@ -74,9 +77,11 @@ format_num = function(num) {
 # Format res_summ_wide for LaTex
 res_summ_wide |> 
   dplyr::select(-param) |> # delete param column - ordering is alpha, beta, gamma
-  mutate_if(.predicate = is.numeric, .funs = format_num) |> 
+  mutate_at(.vars = c("se_Full Cohort", 
+                      "se_Adaptive Quadrature", "re_Adaptive Quadrature", 
+                      "se_Trapezoidal Rule", "re_Trapezoidal Rule"), .funs = format_num) |>
   kable(format = "latex", booktabs = TRUE, escape = FALSE, 
-        align = "llrcccccccrccccccc") |> 
+        align = "llrcccccccrccccc") |> 
   kable_styling() 
 ## Note: For visual reasons, the \addlinespace were manually deleted in LaTex
 ## And a \multicolumn used to separate the three parameters
