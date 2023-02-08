@@ -10,3 +10,7 @@ generate-data.R
 combine-data.R
 
 Table-Data/Table1_NPH/.Rhistory
+
+Table-Data/Table1_PH/.Rhistory
+
+*.slurm
