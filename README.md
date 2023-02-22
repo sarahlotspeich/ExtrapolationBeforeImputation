@@ -1,6 +1,6 @@
 # It’s integral: Replacing the trapezoidal rule to remove bias and correctly impute censored covariates with their conditional means
 
-This repository contains R code and simulation data to reproduce results from the manuscript by Lotspeich and Garcia (2022+). 
+This repository contains R code and simulation data to reproduce results from the [manuscript](https://arxiv.org/abs/2209.04716) by Lotspeich and Garcia (2022+). 
 
 For the `imputeCensRd` package, which implements the conditional mean imputation approaches from the paper, can be found in its own repo [here](https://github.com/sarahlotspeich/imputeCensRd). 
 
