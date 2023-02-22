@@ -8,13 +8,13 @@ generate_data = function(n, censoring = "light", distX = "weibull", XdepZ = TRUE
     if (distX == "weibull") {
       x = rweibull(n = n, shape = 0.75, scale = 0.25 + 0.25 * z)  # To-be-censored covariate    
     } else if (distX == "lognormal") {
-      x = rlnorm(n = n, meanlog = 0, sdlog = 0.5) # To-be-censored covariate
+      x = rlnorm(n = n, meanlog = 0 + 0.05 * z, sdlog = 0.5) # To-be-censored covariate
     }
   } else {
     if (distX == "weibull") {
       x = rweibull(n = n, shape = 0.75, scale = 0.25)  # To-be-censored covariate  
     } else if (distX == "lognormal") {
-      x = rlnorm(n = n, meanlog = 0 + 0.05 * z, sdlog = 0.5) # To-be-censored covariate
+      x = rlnorm(n = n, meanlog = 0, sdlog = 0.5) # To-be-censored covariate
     }
   }
   e = rnorm(n = n, mean = 0, sd = 1) # Random errors
