@@ -11,23 +11,30 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 **Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature versus the trapezoidal rule.
 <!-- ![](Tables/Table1.png) -->
 
-  - [Script (Run Simulations)](Sim-Scripts/Table1.R)
+  - [Script (Run Simulations)](Sim-Scripts/Table1-Gold-Standard.R)
   - [Script (Make Figure)](Table-Scripts/Table1-Gold-Standard.R)
   - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
 
 **Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
 <!-- ![](Tables/Table2.png) -->
 
-  - [Script (Run Simulations)](Sim-Scripts/Table2.R)
+  - [Script (Run Simulations)](Sim-Scripts/Table2-Estimated-WeibullX.R)
   - [Script (Make Figure)](Table-Scripts/Table2-Estimated-WeibullX.R)
   - [Data (Simulation Results)](Table-Data/data_Table2.csv)  
 
-**Table S1.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+**Table S1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function, assuming that $X$ was independent of $Z$.
 <!-- ![](Tables/TableS1.png) -->
 
-  - [Script (Run Simulations)](Sim-Scripts/TableS1.R)
-  - [Script (Make Figure)](Table-Scripts/TableS1-Estimated-LogNormal.R)
+  - [Script (Run Simulations)](Sim-Scripts/TableS1-Gold-Standard-XindepZ.R)
+  - [Script (Make Figure)](Table-Scripts/TableS1-Gold-Standard-XindepZ.R)
   - [Data (Simulation Results)](Table-Data/data_TableS1.csv)  
+
+**Table S2.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+<!-- ![](Tables/TableS2.png) -->
+
+  - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-LogNormalX.R)
+  - [Script (Make Figure)](Table-Scripts/TableS2-Estimated-LogNormalX.R)
+  - [Data (Simulation Results)](Table-Data/data_TableS2.csv)  
 
 ## Figures 
 
