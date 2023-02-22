@@ -18,7 +18,7 @@ source_url("https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/ge
 trueSURV = function(q, z) {
   pweibull(q = q, 
            shape = 0.75, 
-           scale = 0.25 + 0.25 * z,
+           scale = 0.25,
            lower.tail = FALSE)
 }
 
