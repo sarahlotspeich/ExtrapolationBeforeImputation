@@ -16,7 +16,7 @@ library(ggplot2) # To make pretty plots
 # //////////////////////////////////////////////////////////////////////
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table1_PH.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table1.csv")
 ## Note: Simulations were run on random seed 114 (with 1000 reps per seed, per setting)
 ## This information is captured in the "sim" variable which is of the form seed-replicate. 
 
