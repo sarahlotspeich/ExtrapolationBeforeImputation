@@ -12,8 +12,23 @@ library(kableExtra) # To format pretty tables
 library(ggplot2) # To make pretty plots
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table2_PH.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table2.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with ~100 reps per seed, per setting)
+
+# //////////////////////////////////////////////////////////////////////
+# Get convergence numbers for footnote /////////////////////////////////
+# //////////////////////////////////////////////////////////////////////
+res |> 
+  summarize(reps_na_aq = sum(is.na(beta_aq)),
+            reps_na_tr = sum(is.na(beta_tr))
+  ) ## Just 24 replicates out of 12,000 did not converge
+
+res |> 
+  group_by(censoring, n) |> 
+  summarize(reps_na_aq = sum(is.na(beta_aq)),
+            reps_na_tr = sum(is.na(beta_tr))
+            ) |> 
+  arrange(desc(reps_na_aq)) ## Converged in $\geq 99.4\%$ of replicates per setting
 
 # //////////////////////////////////////////////////////////////////////
 # Summarize simulation results by setting //////////////////////////////
