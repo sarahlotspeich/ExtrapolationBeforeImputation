@@ -22,7 +22,7 @@ trueSURV = function(q, z) {
 }
 
 # Set the number of replicates per setting
-reps = 1 # We use reps = 1000 per setting
+reps = 1 ## We used a total of 1000, but see NOTES below
 
 # Choose seed 
 sim_seed = 114
