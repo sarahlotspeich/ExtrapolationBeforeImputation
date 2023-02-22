@@ -66,6 +66,6 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
   - [Script (Make Figure)](Figure-Scripts/FigureS5-Extrapolation-Methods-Trapezoidal-Rule.R)
   - [Data (Simulation Results)](Figure-Data/data_FigureS5.R)  
 
-**Figure S6.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate), which led to worse performance (i.e., higher bias) when calculating the conditional mean with the trapezoidal rule.
+**Figure S8.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate), which led to worse performance (i.e., higher bias) when calculating the conditional mean with the trapezoidal rule.
 
-  - [Script (Make Figure)](Figure-Scripts/FigureS6-Weibull-vs-Log-Normal.R) 
+  - [Script (Make Figure)](Figure-Scripts/FigureS8-Weibull-vs-Log-Normal.R) 
