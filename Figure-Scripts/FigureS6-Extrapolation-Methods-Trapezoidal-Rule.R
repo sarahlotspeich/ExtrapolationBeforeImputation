@@ -1,9 +1,8 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Figure S5 in Supplementary Materials  //////////////////////
-# Caption begins "With log-normal $X$, Extrapolating Breslow's /////////
-# estimator $\widehat{S}_0(t)$ beyond the largest uncensored value /////
-# $\widetilde{X}$ with any of the three extrapolation methods offered //
-# similar bias and efficiency ..." /////////////////////////////////////
+# Replicate Figure S6 in Supplementary Materials  //////////////////////
+# Caption begins "Extrapolating Breslow's estimator $\widehat{S}_0(t)$ /
+# beyond ... with any of the three extrapolation methods offered ///////
+# similar bias and efficiency ... with the trapezoidal rule" ///////////
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
@@ -18,7 +17,7 @@ library(wesanderson) # For colors
 # //////////////////////////////////////////////////////////////////////
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Figure-Data/data_FigureS5.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Figure-Data/data_FigureS6_PH.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with 100 reps per seed, per setting)
 ## This information is captured in the "sim" variable which is of the form "seed-replicate." 
 
@@ -56,12 +55,12 @@ beta_res |>
   ylab(TeX("Parameter Estimate $\\hat{\\beta}$")) 
 
 # Save as 10" wide x 10" tall
-ggsave("FigureS5.png", width = 10, height = 10, units = "in")
+ggsave("FigureS6.png", width = 10, height = 10, units = "in")
 
-## Note: 19 rows will be removed because beta is NA 
+## Note: 24 rows will be removed because beta is NA 
 beta_res |> 
   group_by(extrap, censoring, n) |> 
   summarize(reps_na = sum(is.na(beta))) |> 
-  filter(reps_na > 0)
+  arrange(desc(reps_na))
 ## These are the instances where the Weibull extension did not converge
-## There were <= 4 instances per setting (<0.5%)
+## There were <= 6 instances per setting (<=0.6%)
