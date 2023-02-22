@@ -5,18 +5,18 @@
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
-library(dplyr) # For data wrangling
+library(dplyr) # To wrangle data
 library(tidyr) # To transform data
 library(ggplot2) # To create plots
 library(latex2exp) # To create LaTex labels for plots
-library(wesanderson) # For colors
+library(wesanderson) # To get fun colors
 
 # //////////////////////////////////////////////////////////////////////
 # Read in simulation results from GitHub ///////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Figure-Data/data_FigureS2_PH.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Figure-Data/data_FigureS3_PH.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with 100 reps per seed, per setting)
 ## This information is captured in the "sim" variable which is of the form "seed-replicate." 
 
