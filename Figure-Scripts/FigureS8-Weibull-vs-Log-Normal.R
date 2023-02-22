@@ -1,5 +1,5 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Figure S7 in Supplementary Materials  //////////////////////
+# Replicate Figure S8 in Supplementary Materials  //////////////////////
 # Caption begins "Due to the Weibull distribution's skewness, //////////
 # higher censoring rates led to smaller values of $W_{(n)}$ ..." ///////
 # //////////////////////////////////////////////////////////////////////
@@ -97,5 +97,5 @@ plot_b = ggplot() +
 # //////////////////////////////////////////////////////////////////////
 ggpubr::ggarrange(plot_a, plot_b, common.legend = TRUE, ncol = 1, labels = "AUTO")
 
-# Save as 10" wide x 7" tall
-ggsave("FigureS6.png", width = 10, height = 10, units = "in")
+# Save as 10" wide x 10" tall
+ggsave("FigureS8.png", width = 10, height = 10, units = "in")
