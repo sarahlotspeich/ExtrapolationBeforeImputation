@@ -16,7 +16,7 @@ library(wesanderson) # For colors
 # //////////////////////////////////////////////////////////////////////
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Figure-Data/data_FigureS3.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Figure-Data/data_FigureS4_PH.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with 100 reps per seed, per setting)
 ## This information is captured in the "sim" variable which is of the form "seed-replicate." 
 
@@ -54,12 +54,12 @@ beta_res |>
   ylab(TeX("Parameter Estimate $\\hat{\\beta}$")) 
 
 # Save as 10" wide x 10" tall
-ggsave("FigureS3.png", width = 10, height = 10, units = "in")
+ggsave("FigureS4.png", width = 10, height = 10, units = "in")
 
-## Note: 4 rows will be removed because beta is NA
+## Note: 3 rows will be removed because beta is NA
 beta_res |> 
   group_by(extrap, censoring, n) |> 
   summarize(reps_na = sum(is.na(beta))) |> 
-  filter(reps_na > 0)
+  arrange(desc(reps_na))
 ## These are the instances where the Weibull extension did not converge
 ## There were <= 2 instances per setting (<0.5%)

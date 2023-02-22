@@ -60,6 +60,6 @@ ggsave("FigureS3.png", width = 10, height = 10, units = "in")
 beta_res |> 
   group_by(extrap, censoring, n) |> 
   summarize(reps_na = sum(is.na(beta))) |> 
-  filter(reps_na > 0)
+  arrange(desc(reps_na))
 ## These are the instances where the Weibull extension did not converge
 ## There were <= 6 instances per setting (<=0.6%)
