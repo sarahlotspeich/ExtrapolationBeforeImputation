@@ -1,10 +1,7 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Figure S6 in Supplementary Materials  //////////////////////
+# Replicate Figure S7 in Supplementary Materials  //////////////////////
 # Caption begins "Due to the Weibull distribution's skewness, //////////
-# higher censoring rates led to smaller values of $W_{(n)}$ ////////////
-# (the maximum of the observed covariate), which led to worse //////////
-# performance (i.e., higher bias) when calculating the conditional /////
-# mean with the trapezoidal rule... //////////////////////////////////// 
+# higher censoring rates led to smaller values of $W_{(n)}$ ..." ///////
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
