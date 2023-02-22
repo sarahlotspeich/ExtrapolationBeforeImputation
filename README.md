@@ -4,30 +4,37 @@ This repository contains R code and simulation data to reproduce results from th
 
 For the `imputeCensRd` package, which implements the conditional mean imputation approaches from the paper, can be found in its own repo [here](https://github.com/sarahlotspeich/imputeCensRd). 
 
-Each of the "Script (Run Simulations)" files is coded to run 1 replication of each setting for demonstration. Per the NOTES at the bottom of the scripts, simulations for Tables 2-S1 and Figures S2-S5 were run in parallel.
+Each of the "Script (Run Simulations)" files is coded to run 1 replication of each setting for demonstration. Per the NOTES at the bottom of the scripts, some more time-intensive simulations were run in parallel.
 
 ## Tables 
 
 **Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature versus the trapezoidal rule.
 <!-- ![](Tables/Table1.png) -->
 
-  - [Script (Run Simulations)](Sim-Scripts/Table1.R)
-  - [Script (Make Figure)](Table-Scripts/Table1-Gold-Standard.R)
+  - [Script (Run Simulations)](Sim-Scripts/Table1-Gold-Standard.R)
+  - [Script (Make Table)](Table-Scripts/Table1-Gold-Standard.R)
   - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
 
 **Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
 <!-- ![](Tables/Table2.png) -->
 
-  - [Script (Run Simulations)](Sim-Scripts/Table2.R)
-  - [Script (Make Figure)](Table-Scripts/Table2-Estimated-WeibullX.R)
+  - [Script (Run Simulations)](Sim-Scripts/Table2-Estimated-WeibullX.R)
+  - [Script (Make Table)](Table-Scripts/Table2-Estimated-WeibullX.R)
   - [Data (Simulation Results)](Table-Data/data_Table2.csv)  
 
-**Table S1.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+**Table S1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function, assuming that $X$ was independent of $Z$.
 <!-- ![](Tables/TableS1.png) -->
 
-  - [Script (Run Simulations)](Sim-Scripts/TableS1.R)
-  - [Script (Make Figure)](Table-Scripts/TableS1-Estimated-LogNormal.R)
+  - [Script (Run Simulations)](Sim-Scripts/TableS1-Gold-Standard-XindepZ.R)
+  - [Script (Make Table)](Table-Scripts/TableS1-Gold-Standard-XindepZ.R)
   - [Data (Simulation Results)](Table-Data/data_TableS1.csv)  
+
+**Table S2.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+<!-- ![](Tables/TableS2.png) -->
+
+  - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-LogNormalX.R)
+  - [Script (Make Table)](Table-Scripts/TableS2-Estimated-LogNormalX.R)
+  - [Data (Simulation Results)](Table-Data/data_TableS2.csv)  
 
 ## Figures 
 
