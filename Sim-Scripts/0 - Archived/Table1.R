@@ -9,10 +9,10 @@
 ## Run once: devtools::install_github("sarahlotspeich/imputeCensRd)
 library(imputeCensRd) # To impute censored covariates 
 
-# Data generation function based on Atem et al. (2017)'s "independent censoring" censoring
-generate_AtemSMMR = function(n, censoring = "light") {
+# Data generation function based on Atem et al. (2017)'s "independent censoring" censoringing
+generate_AtemEtAl2017 = function(n, censoring = "light") {
   z = rbinom(n = n, size = 1, prob = 0.5) # Uncensored covariate
-  x = rweibull(n = n, shape = 0.75, scale = 0.25 + 0.25 * z)  # To-be-censored covariate
+  x = rweibull(n = n, shape = 0.75, scale = 0.25)  # To-be-censored covariate
   e = rnorm(n = n, mean = 0, sd = 1) # Random errors
   y = 1 + 0.5 * x + 0.25 * z + e # Continuous outcome
   q = ifelse(test = censoring == "light", 
@@ -30,10 +30,7 @@ generate_AtemSMMR = function(n, censoring = "light") {
 
 # Write a function for the true survival function used to generate Weibull X 
 trueSURV = function(q, z) {
-  pweibull(q = q, 
-           shape = 0.75, 
-           scale = 0.25 + 0.25 * z,
-           lower.tail = FALSE)
+  pweibull(q = q, shape = 0.75, scale = 0.25, lower.tail = FALSE)
 }
 
 # Set the number of replicates per setting
@@ -59,8 +56,8 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
     # Loop over replicates 
     for (r in 1:reps) {
       # Generate data
-      dat = generate_AtemSMMR(n = n, 
-                              censoring = censoring)
+      dat = generate_AtemEtAl2017(n = n, 
+                                  censoring = censoring)
       
       # Save % censored
       sett_res$perc_censored[r] = 1 - mean(dat$d)
@@ -94,7 +91,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       
       # Save results
       write.csv(x = sett_res, 
-                file = paste0("~/Dropbox (Wake Forest University)/0 - CODE/ItsIntegral/Table-Data/Table1_PH/", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
+                file = paste0(censoring, "_n", n, "_seed", sim_seed, ".csv"), 
                 row.names = F)
     }
   }
