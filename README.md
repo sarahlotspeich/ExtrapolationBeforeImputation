@@ -50,25 +50,25 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 
   - [Script (Run Simulations)](Sim-Scripts/FigureS3-Extrapolation-Methods-Weibull.R)
   - [Script (Make Figure)](Figure-Scripts/FigureS3-Extrapolation-Methods-Weibull.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS3.R)  
+  - [Data (Simulation Results)](Figure-Data/data_FigureS3.csv)  
 
 **Figure S4.** With log-normal $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
 
   - [Script (Run Simulations)](Sim-Scripts/FigureS4-Extrapolation-Methods-Log-Normal.R)
   - [Script (Make Figure)](Figure-Scripts/FigureS4-Extrapolation-Methods-Log-Normal.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS4.R)  
+  - [Data (Simulation Results)](Figure-Data/data_FigureS4.csv)  
 
 **Figure S5.** Interpolating Breslow's estimator $\widehat{S}_0(t)$ between uncensored values with either of the two interpolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature. 
 
   - [Script (Run Simulations)](Sim-Scripts/FigureS5-Interpolation-Methods.R)
   - [Script (Make Figure)](Figure-Scripts/FigureS5-Interpolation-Methods.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS5.R)  
+  - [Data (Simulation Results)](Figure-Data/data_FigureS5.csv)  
 
 **Figure S6.** Extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with the trapezoidal rule.
 
   - [Script (Run Simulations)](Sim-Scripts/FigureS6-Extrapolation-Methods-Trapezoidal-Rule.R)
   - [Script (Make Figure)](Figure-Scripts/FigureS6-Extrapolation-Methods-Trapezoidal-Rule.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS6.R)  
+  - [Data (Simulation Results)](Figure-Data/data_FigureS6.csv)  
 
 **Figure S7.** When using the estimated survival function $\widehat{S}(x|z)$, conditional mean imputation with adaptive quadrature could be biased under severe censoring (e.g., $> 82\%$). This residual bias seemed to stem from the estimated survival function, since we saw virtually no bias across these same settings when using the true survival function $S(x|z)$ instead.
 
