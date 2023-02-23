@@ -1,6 +1,6 @@
 # It’s integral: Replacing the trapezoidal rule to remove bias and correctly impute censored covariates with their conditional means
 
-This repository contains R code and simulation data to reproduce results from the manuscript by Lotspeich and Garcia (2022+). 
+This repository contains R code and simulation data to reproduce results from the [manuscript](https://arxiv.org/abs/2209.04716) by Lotspeich and Garcia (2022+). 
 
 For the `imputeCensRd` package, which implements the conditional mean imputation approaches from the paper, can be found in its own repo [here](https://github.com/sarahlotspeich/imputeCensRd). 
 
@@ -41,31 +41,41 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 **Figure S1.** Illustration of the four extrapolation methods for a step survival function $\widehat{S}(t)$ in simulated data.
 
   - [Script (Make Figure)](Figure-Scripts/FigureS1-Illustrate-Extrapolation-Methods.R)
+
+**Figure S2.** We explored light ($\sim 17\%$), heavy ($\sim 49\%$), and extra heavy ($\sim 82\%$) censoring in Weibull $X$, induced by generating $C$ from an exponential distribution with rates $= 0.5$, $2.9$, and $20$, respectively.
+
+  - [Script (Make Figure)](Figure-Scripts/FigureS2-Percent-Censored.R)
   
-**Figure S2.** With Weibull $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with the Weibull extension offered the lowest bias and best efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
+**Figure S3.** With Weibull $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with the Weibull extension offered the lowest bias and best efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
 
-  - [Script (Run Simulations)](Sim-Scripts/FigureS2.R)
-  - [Script (Make Figure)](Figure-Scripts/FigureS2-Extrapolation-Methods-Weibull.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS2.R)  
-
-**Figure S3.** With log-normal $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
-
-  - [Script (Run Simulations)](Sim-Scripts/FigureS3.R)
-  - [Script (Make Figure)](Figure-Scripts/FigureS3-Extrapolation-Methods-Log-Normal.R)
+  - [Script (Run Simulations)](Sim-Scripts/FigureS3-Extrapolation-Methods-Weibull.R)
+  - [Script (Make Figure)](Figure-Scripts/FigureS3-Extrapolation-Methods-Weibull.R)
   - [Data (Simulation Results)](Figure-Data/data_FigureS3.R)  
 
-**Figure S4.** Interpolating Breslow's estimator $\widehat{S}_0(t)$ between uncensored values with either of the two interpolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature. 
+**Figure S4.** With log-normal $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
 
-  - [Script (Run Simulations)](Sim-Scripts/FigureS4.R)
-  - [Script (Make Figure)](Figure-Scripts/FigureS4-Interpolation-Methods.R)
+  - [Script (Run Simulations)](Sim-Scripts/FigureS4-Extrapolation-Methods-Log-Normal.R)
+  - [Script (Make Figure)](Figure-Scripts/FigureS4-Extrapolation-Methods-Log-Normal.R)
   - [Data (Simulation Results)](Figure-Data/data_FigureS4.R)  
 
-**Figure S5.** Extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with the trapezoidal rule.
+**Figure S5.** Interpolating Breslow's estimator $\widehat{S}_0(t)$ between uncensored values with either of the two interpolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature. 
 
-  - [Script (Run Simulations)](Sim-Scripts/FigureS5.R)
-  - [Script (Make Figure)](Figure-Scripts/FigureS5-Extrapolation-Methods-Trapezoidal-Rule.R)
+  - [Script (Run Simulations)](Sim-Scripts/FigureS5-Interpolation-Methods.R)
+  - [Script (Make Figure)](Figure-Scripts/FigureS5-Interpolation-Methods.R)
   - [Data (Simulation Results)](Figure-Data/data_FigureS5.R)  
 
-**Figure S6.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate), which led to worse performance (i.e., higher bias) when calculating the conditional mean with the trapezoidal rule.
+**Figure S6.** Extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with the trapezoidal rule.
 
-  - [Script (Make Figure)](Figure-Scripts/FigureS6-Weibull-vs-Log-Normal.R) 
+  - [Script (Run Simulations)](Sim-Scripts/FigureS6-Extrapolation-Methods-Trapezoidal-Rule.R)
+  - [Script (Make Figure)](Figure-Scripts/FigureS6-Extrapolation-Methods-Trapezoidal-Rule.R)
+  - [Data (Simulation Results)](Figure-Data/data_FigureS6.R)  
+
+**Figure S7.** When using the estimated survival function $\widehat{S}(x|z)$, conditional mean imputation with adaptive quadrature could be biased under severe censoring (e.g., $> 82\%$). This residual bias seemed to stem from the estimated survival function, since we saw virtually no bias across these same settings when using the true survival function $S(x|z)$ instead.
+
+  - [Script (Make Figure)](Figure-Scripts/FigureS7-Percent-Censored-vs-Bias.R) 
+
+Note: Figure S7 uses the data from **Tables 1 and 2**. (See above for details.) 
+
+**Figure S8.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate), which led to worse performance (i.e., higher bias) when calculating the conditional mean with the trapezoidal rule.
+
+  - [Script (Make Figure)](Figure-Scripts/FigureS8-Weibull-vs-Log-Normal.R) 
