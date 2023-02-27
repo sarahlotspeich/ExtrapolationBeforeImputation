@@ -14,6 +14,10 @@ library(ggpubr) # To panel plots A and B together
 # Be reproducible
 set.seed(721)
 
+# Load data generating function generate_data() from GitHub 
+library(devtools) # To source an R script from GitHub
+source_url("https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/generate_data.R")
+
 # //////////////////////////////////////////////////////////////////////
 # Create plot A: Distribution of $W_{(n)}$ (the maximum observed ///////
 # covariate) when X was generated from a Weibull distribution  /////////
@@ -23,14 +27,17 @@ set.seed(721)
 # And save the largest value of W = min(X, C) for each 
 sims = 1000
 Wn = vector(length = 3 * sims)
-for (cens in 1:3) {
-  rateC = c(0.5, 2.9, 20)[cens] # Rate parameter for censoring
+count = 1 # counter to index the Wn vector
+for (censoring in c("light", "heavy", "extra heavy")) {
   for (s in 1:sims) {
-    x = rweibull(n = 1000, shape = 0.25, scale = 0.75) # True covariate
-    c = rexp(n = 1000, rate = rateC) # Censoring variable
-    w = pmin(x, c) # Observed covariate 
-    Wn[(cens - 1) * sims + s] = max(w) # Save maximum observed covariate
+    # Generate data
+    dat = generate_data(n = 1000, ## Sample size
+                        censoring = censoring, ## Censoring setting
+                        distX = "weibull", ## Distribution for X
+                        XdepZ = TRUE) ## Since TRUE, assume that X depends on Z
+    Wn[(count - 1) * sims + s] = max(dat$w) # Save maximum observed covariate
   }
+  count = count + 1 # increment for next censoring 
 }
 
 # Add column with factor for censoring rate
@@ -62,14 +69,17 @@ plot_a = ggplot() +
 # And save the largest value of W = min(X, C) for each 
 sims = 1000
 Wn = vector(length = 3 * sims)
-for (cens in 1:3) {
-  rateC = c(0.2, 0.4, 1.67)[cens] # Rate parameter for censoring
+count = 1 # counter to index the Wn vector
+for (censoring in c("light", "heavy", "extra heavy")) {
   for (s in 1:sims) {
-    x = rlnorm(n = 1000, meanlog = 0, sdlog = 0.5) # True covariate
-    c = rexp(n = 1000, rate = rateC) # Censoring variable
-    w = pmin(x, c) # Observed covariate 
-    Wn[(cens - 1) * sims + s] = max(w) # Save maximum observed covariate
+    # Generate data
+    dat = generate_data(n = 1000, ## Sample size
+                        censoring = censoring, ## Censoring setting
+                        distX = "lognormal", ## Distribution for X
+                        XdepZ = TRUE) ## Since TRUE, assume that X depends on Z
+    Wn[(count - 1) * sims + s] = max(dat$w) # Save maximum observed covariate
   }
+  count = count + 1 # increment for next censoring 
 }
 
 # Add column with factor for censoring rate
