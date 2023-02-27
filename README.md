@@ -29,12 +29,19 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
   - [Script (Make Table)](Table-Scripts/TableS1-Gold-Standard-XindepZ.R)
   - [Data (Simulation Results)](Table-Data/data_TableS1.csv)  
 
-**Table S2.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+**Table S2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function, assuming that $X$ was independent of $Z$.
 <!-- ![](Tables/TableS2.png) -->
 
-  - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-LogNormalX.R)
-  - [Script (Make Table)](Table-Scripts/TableS2-Estimated-LogNormalX.R)
+  - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
+  - [Script (Make Table)](Table-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
   - [Data (Simulation Results)](Table-Data/data_TableS2.csv)  
+
+**Table S3.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+<!-- ![](Tables/TableS3.png) -->
+
+  - [Script (Run Simulations)](Sim-Scripts/TableS3-Estimated-LogNormalX.R)
+  - [Script (Make Table)](Table-Scripts/TableS3-Estimated-LogNormalX.R)
+  - [Data (Simulation Results)](Table-Data/data_TableS3.csv)  
 
 ## Figures 
 
