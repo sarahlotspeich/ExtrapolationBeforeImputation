@@ -1,5 +1,5 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Table S3 ///////////////////////////////////////////////////
+# Replicate Table S2 ///////////////////////////////////////////////////
 # Caption begins "Simulation results for Weibull $X$ from the full /////
 # cohort analysis and imputation approaches using the estimated ////////
 # survival function, assuming that $X$ was independent of $Z$." ////////
@@ -11,7 +11,7 @@ library(tidyr) # To gather wide tables
 library(kableExtra) # To format pretty tables
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_TableS3.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_TableS2.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with ~100 reps per seed, per setting)
 
 # Calculate average % censoring per censoring setting
