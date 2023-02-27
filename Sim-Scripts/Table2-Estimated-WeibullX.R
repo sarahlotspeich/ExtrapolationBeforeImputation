@@ -6,7 +6,7 @@
 
 # Load packages
 ## Run once: install.packages("devtools")
-## Run once: devtools::install_github("sarahlotspeich/imputeCensRd)
+## Run once: devtools::install_github("sarahlotspeich/imputeCensRd")
 library(imputeCensRd) # To impute censored covariates 
 
 # Load data generating function generate_data() from GitHub 

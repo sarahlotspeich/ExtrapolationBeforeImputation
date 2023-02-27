@@ -1,12 +1,12 @@
 # /////////////////////////////////////////////////////////////////////////
-# Run simulation results for Table S2 /////////////////////////////////////
+# Run simulation results for Table S3 /////////////////////////////////////
 # Compare full cohort analysis to CMI based on estimated survival /////////
 # function and adaptive quadrature vs. trapezoidal rule for Log-Normal X //
 # /////////////////////////////////////////////////////////////////////////
 
 # Load packages
 ## Run once: install.packages("devtools")
-## Run once: devtools::install_github("sarahlotspeich/imputeCensRd)
+## Run once: devtools::install_github("sarahlotspeich/imputeCensRd")
 library(imputeCensRd) # To impute censored covariates 
 
 # Load data generating function generate_data() from GitHub 
@@ -76,7 +76,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       
       # Save results
       write.csv(x = sett_res, 
-                file = paste0("TableS2_", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
+                file = paste0("TableS3_", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
                 row.names = F)
     }
   }
