@@ -9,35 +9,30 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 ## Tables 
 
 **Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature versus the trapezoidal rule.
-<!-- ![](Tables/Table1.png) -->
 
   - [Script (Run Simulations)](Sim-Scripts/Table1-Gold-Standard.R)
   - [Script (Make Table)](Table-Scripts/Table1-Gold-Standard.R)
   - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
 
 **Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
-<!-- ![](Tables/Table2.png) -->
 
   - [Script (Run Simulations)](Sim-Scripts/Table2-Estimated-WeibullX.R)
   - [Script (Make Table)](Table-Scripts/Table2-Estimated-WeibullX.R)
   - [Data (Simulation Results)](Table-Data/data_Table2.csv)  
 
 **Table S1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function, assuming that $X$ was independent of $Z$.
-<!-- ![](Tables/TableS1.png) -->
 
   - [Script (Run Simulations)](Sim-Scripts/TableS1-Gold-Standard-XindepZ.R)
   - [Script (Make Table)](Table-Scripts/TableS1-Gold-Standard-XindepZ.R)
   - [Data (Simulation Results)](Table-Data/data_TableS1.csv)  
 
 **Table S2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function, assuming that $X$ was independent of $Z$.
-<!-- ![](Tables/TableS2.png) -->
 
   - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
   - [Script (Make Table)](Table-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
   - [Data (Simulation Results)](Table-Data/data_TableS2.csv)  
 
 **Table S3.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
-<!-- ![](Tables/TableS3.png) -->
 
   - [Script (Run Simulations)](Sim-Scripts/TableS3-Estimated-LogNormalX.R)
   - [Script (Make Table)](Table-Scripts/TableS3-Estimated-LogNormalX.R)
