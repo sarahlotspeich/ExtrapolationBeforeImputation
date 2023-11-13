@@ -1,4 +1,4 @@
-# It’s integral: Replacing the trapezoidal rule to remove bias and correctly impute censored covariates with their conditional means
+# A hybrid approach to impute heavily censored covariates with their conditional means
 
 This repository contains R code and simulation data to reproduce results from the [manuscript](https://arxiv.org/abs/2209.04716) by Lotspeich and Garcia (2022+). 
 
