@@ -20,13 +20,13 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
   - [Script (Make Table)](Table-Scripts/Table2-Estimated-WeibullX.R)
   - [Data (Simulation Results)](Table-Data/data_Table2.csv)  
 
-**Table S1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function, assuming that $X$ was independent of $Z$.
+**Table S1.** Simulation results for Weibull $X$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and imputation approaches using the true survival function and adaptive quadrature up to infinity versus the trapezoidal rule up to the largest observed value, $W_{(n)}$, assuming that $X$ was independent of $Z$.
 
   - [Script (Run Simulations)](Sim-Scripts/TableS1-Gold-Standard-XindepZ.R)
   - [Script (Make Table)](Table-Scripts/TableS1-Gold-Standard-XindepZ.R)
   - [Data (Simulation Results)](Table-Data/data_TableS1.csv)  
 
-**Table S2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function, assuming that $X$ was independent of $Z$.
+**Table S2.** Simulation results for Weibull $X$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and imputation approaches using the estimated survival function, assuming that $X$ was independent of $Z$.
 
   - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
   - [Script (Make Table)](Table-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
