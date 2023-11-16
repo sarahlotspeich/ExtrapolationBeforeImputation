@@ -17,7 +17,7 @@ library(wesanderson) # To get fun colors
 # //////////////////////////////////////////////////////////////////////
 
 ## (A) Using *true* survival function
-res_true = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table1_PH.csv")
+res_true = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table1_PH.csv")
 
 # Calculate average % censoring per censoring setting
 res_true |> 
@@ -30,7 +30,7 @@ res_true |>
 ## Extra heavy 82% (65-92%)
 
 ## (B) Using *estimated* survival function
-res_est = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table2_PH.csv")
+res_est = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table2_PH.csv")
 
 # Calculate average % censoring per censoring setting
 res_est |> 
