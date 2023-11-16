@@ -11,7 +11,7 @@ library(imputeCensRd) # To impute censored covariates
 
 # Load data generating function generate_data() from GitHub 
 library(devtools) # To source an R script from GitHub
-source_url("https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/generate_data.R")
+source_url("https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/generate_data.R")
 
 # Write a function for the true survival function used to generate Weibull X 
 trueSURV = function(q, z) {
