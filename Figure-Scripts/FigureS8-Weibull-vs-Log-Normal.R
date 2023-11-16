@@ -16,7 +16,7 @@ set.seed(721)
 
 # Load data generating function generate_data() from GitHub 
 library(devtools) # To source an R script from GitHub
-source_url("https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/generate_data.R")
+source_url("https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/generate_data.R")
 
 # //////////////////////////////////////////////////////////////////////
 # Create plot A: Distribution of $W_{(n)}$ (the maximum observed ///////
