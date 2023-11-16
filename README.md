@@ -8,7 +8,7 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 
 ## Tables 
 
-**Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature versus the trapezoidal rule.
+**Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature up to infinity versus the trapezoidal rule up to the largest observed value, $W_{(n)}$.
 
   - [Script (Run Simulations)](Sim-Scripts/Table1-Gold-Standard.R)
   - [Script (Make Table)](Table-Scripts/Table1-Gold-Standard.R)
