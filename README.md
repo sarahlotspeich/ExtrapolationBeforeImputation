@@ -14,7 +14,7 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
   - [Script (Make Table)](Table-Scripts/Table1-Gold-Standard.R)
   - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
 
-**Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+**Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function.
 
   - [Script (Run Simulations)](Sim-Scripts/Table2-Estimated-WeibullX.R)
   - [Script (Make Table)](Table-Scripts/Table2-Estimated-WeibullX.R)
