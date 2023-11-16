@@ -17,7 +17,7 @@ library(wesanderson) # To get fun colors
 # //////////////////////////////////////////////////////////////////////
 
 ## (A) Using *true* survival function
-res_true = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table1_PH.csv")
+res_true = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table1.csv")
 
 # Calculate average % censoring per censoring setting
 res_true |> 
@@ -30,7 +30,7 @@ res_true |>
 ## Extra heavy 82% (65-92%)
 
 ## (B) Using *estimated* survival function
-res_est = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table2_PH.csv")
+res_est = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table2.csv")
 
 # Calculate average % censoring per censoring setting
 res_est |> 
@@ -52,7 +52,7 @@ res_summ_long = res_est |>
   mutate(calc = gsub(pattern = ".*_", replacement = "", x = param_calc),
          calc = factor(x = calc, 
                        levels = c("fc", "aq", "tr"),
-                       labels = c("Full Cohort", "Adaptive Quadrature", "Trapezoidal Rule")),
+                       labels = c("Full Cohort", "Conditional Mean Imputation (Extrapolated)", "Conditional Mean Imputation (Not Extrapolated)")),
          param = sub("_.*", "", param_calc),
          censoring = factor(x = censoring,
                             levels = c("light", "heavy", "extra_heavy"), 
@@ -72,7 +72,7 @@ res_summ_long = res_est |>
       mutate(calc = gsub(pattern = ".*_", replacement = "", x = param_calc),
              calc = factor(x = calc, 
                            levels = c("fc", "aq", "tr"),
-                           labels = c("Full Cohort", "Adaptive Quadrature", "Trapezoidal Rule")),
+                           labels = c("Full Cohort", "Conditional Mean Imputation (Extrapolated)", "Conditional Mean Imputation (Not Extrapolated)")),
              param = sub("_.*", "", param_calc),
              censoring = factor(x = censoring,
                                 levels = c("light", "heavy", "extra_heavy"), 
@@ -112,7 +112,7 @@ res_summ_long |>
                      name = "Method") + 
   scale_fill_manual(values = wes_palette("Zissou1", n = 5, type = "discrete")[c(1,5)],
                      name = "Method") + 
-  theme_minimal(base_size = 14) + 
+  theme_minimal(base_size = 16) + 
   theme(legend.position = "top") + 
   scale_x_continuous(labels = percent, breaks = c(0, 0.17, 0.49, 0.815, 1)) + 
   scale_y_continuous(labels = percent)
