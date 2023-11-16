@@ -12,7 +12,7 @@ library(kableExtra) # To format pretty tables
 library(ggplot2) # To make pretty plots
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ItsIntegral/main/Table-Data/data_Table2.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table2.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with ~100 reps per seed, per setting)
 
 # //////////////////////////////////////////////////////////////////////
