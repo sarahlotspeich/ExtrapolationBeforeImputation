@@ -16,20 +16,6 @@ library(wesanderson) # To get fun colors
 # Read in simulation results  //////////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 
-## (A) Using *true* survival function
-res_true = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table1.csv")
-
-# Calculate average % censoring per censoring setting
-res_true |> 
-  group_by(censoring) |> 
-  summarize(min_perc_censored = min(perc_censored),
-            avg_perc_censored = mean(perc_censored),
-            max_perc_censored = max(perc_censored))
-## Light 17% (5-29%)
-## Heavy 49% (32-67%)
-## Extra heavy 82% (65-92%)
-
-## (B) Using *estimated* survival function
 res_est = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table2.csv")
 
 # Calculate average % censoring per censoring setting
@@ -52,7 +38,9 @@ res_summ_long = res_est |>
   mutate(calc = gsub(pattern = ".*_", replacement = "", x = param_calc),
          calc = factor(x = calc, 
                        levels = c("fc", "aq", "tr"),
-                       labels = c("Full Cohort", "Conditional Mean Imputation (Extrapolated)", "Conditional Mean Imputation (Not Extrapolated)")),
+                       labels = c("Full Cohort", 
+                                  "Extrapolated Conditional Mean Imputation", 
+                                  "Non-Extrapolated Conditional Mean Imputation")),
          param = sub("_.*", "", param_calc),
          censoring = factor(x = censoring,
                             levels = c("light", "heavy", "extra_heavy"), 
@@ -65,38 +53,14 @@ res_summ_long = res_est |>
          ),
          bias = est - truth,
          surv = "Estimated"
-  ) |> 
-  bind_rows(
-    res_true |> 
-      gather(key = "param_calc", value = "est", -c(1:4)) |> 
-      mutate(calc = gsub(pattern = ".*_", replacement = "", x = param_calc),
-             calc = factor(x = calc, 
-                           levels = c("fc", "aq", "tr"),
-                           labels = c("Full Cohort", "Conditional Mean Imputation (Extrapolated)", "Conditional Mean Imputation (Not Extrapolated)")),
-             param = sub("_.*", "", param_calc),
-             censoring = factor(x = censoring,
-                                levels = c("light", "heavy", "extra_heavy"), 
-                                labels = c("Light", "Heavy", "Extra Heavy")),
-             truth = ifelse(test = param == "alpha", 
-                            yes = 1,
-                            no = ifelse(test = param == "beta", 
-                                        yes = 0.5, 
-                                        no = 0.25)
-             ),
-             bias = est - truth,
-             surv = "Truth"
-      )
-  )
+  ) 
 
 # //////////////////////////////////////////////////////////////////////
 # Create plot //////////////////////////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 res_summ_long |> 
   filter(calc != "Full Cohort") |> 
-  mutate(surv = factor(surv, levels = c("Truth", "Estimated"), 
-                       labels = c(TeX("True $S(x|z)$"), 
-                                  TeX("Estimated $\\widehat{S}(x|z)$"))),
-         param = factor(param, levels = c("alpha", "beta", "gamma"), 
+  mutate(param = factor(param, levels = c("alpha", "beta", "gamma"), 
                         labels = c(TeX("$\\hat{\\alpha}$: Intercept"),
                                    TeX("$\\hat{\\beta}$: Coefficient on $X$"),
                                    TeX("$\\hat{\\gamma}$: Coefficient on $Z$")
@@ -105,7 +69,7 @@ res_summ_long |>
   ggplot(aes(x = perc_censored, y = bias / truth, col = calc, fill = calc)) + # / truth
   geom_smooth(se = FALSE) +
   geom_hline(yintercept = 0, linetype = 2) +
-  facet_grid(cols = vars(surv), rows = vars(param), scales = "free", labeller = label_parsed) + 
+  facet_grid(cols = vars(param), scales = "free", labeller = label_parsed) + 
   xlab("Percent Censored") + 
   ylab("Percent Bias") + 
   scale_color_manual(values = wes_palette("Zissou1", n = 5, type = "discrete")[c(1,5)],
@@ -118,4 +82,4 @@ res_summ_long |>
   scale_y_continuous(labels = percent)
 
 # Save as 10" wide x 10" tall
-ggsave("FigureS7.png", width = 10, height = 10, units = "in")
+ggsave("FigureS7.png", width = 10, height = 6, units = "in")
