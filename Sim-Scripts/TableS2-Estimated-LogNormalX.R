@@ -1,5 +1,5 @@
 # /////////////////////////////////////////////////////////////////////////
-# Run simulation results for Table S3 /////////////////////////////////////
+# Run simulation results for Table S2 /////////////////////////////////////
 # Compare full cohort analysis to CMI based on estimated survival /////////
 # function and adaptive quadrature vs. trapezoidal rule for Log-Normal X //
 # /////////////////////////////////////////////////////////////////////////
@@ -11,7 +11,7 @@ library(imputeCensRd) # To impute censored covariates
 
 # Load data generating function generate_data() from GitHub 
 library(devtools) # To source an R script from GitHub
-source_url("https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/generate_data.R")
+source_url("https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/generate_data.R")
 
 # Set the number of replicates per setting
 reps = 1 ## We used a total of 1000, but see NOTES below

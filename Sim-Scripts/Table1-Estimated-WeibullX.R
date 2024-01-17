@@ -1,8 +1,7 @@
 # //////////////////////////////////////////////////////////////////////
-# Run simulation results for Table S2 ///////////////////////////////////
+# Run simulation results for Table 1 ///////////////////////////////////
 # Compare full cohort analysis to CMI based on estimated survival / ////
 # function and adaptive quadrature vs. trapezoidal rule for Weibull X //
-# where X was generated independently of Z /////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
@@ -12,7 +11,7 @@ library(imputeCensRd) # To impute censored covariates
 
 # Load data generating function generate_data() from GitHub 
 library(devtools) # To source an R script from GitHub
-source_url("https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/generate_data.R")
+source_url("https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/generate_data.R")
 
 # Set the number of replicates per setting
 reps = 1 ## We used a total of 1000, but see NOTES below
@@ -40,7 +39,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       dat = generate_data(n = n, ## Sample size
                           censoring = censoring, ## Censoring setting
                           distX = "weibull", ## Distribution for X
-                          XdepZ = FALSE) ## Since FALSE, assume that X is independent of Z
+                          XdepZ = TRUE) ## Since TRUE, assume that X depends on Z
       
       # Save % censored
       sett_res$perc_censored[r] = 1 - mean(dat$d)
@@ -77,7 +76,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       
       # Save results
       write.csv(x = sett_res, 
-                file = paste0("TableS2_", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
+                file = paste0("Table2_", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
                 row.names = F)
     }
   }
@@ -86,9 +85,9 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
 # //////////////////////////////////////////////////////////////////////
 # NOTES: When using the estimated survival function, we need to  ///////
 # to fit an imputation model or use an extrapolation method. This //////
-# makes the simulations for this table slower than Table 1. It took ~4 /
+# makes the simulations for this table slower than Table 1. It took ~3 /
 # minutes to run 1 replication per setting MacBook Pro (M1) with 16GB //
-# RAM. Based on this, it would take ~63 hours to run 1000 replications /
+# RAM. Based on this, it would take ~50 hours to run 1000 replications /
 # per setting. We parallelized instead, using sim_seed = 114-133 and ///
 # running reps = 50 replications per seed. /////////////////////////////
 # //////////////////////////////////////////////////////////////////////
