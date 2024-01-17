@@ -1,7 +1,7 @@
 # //////////////////////////////////////////////////////////////////////
 # Replicate Table 1 ////////////////////////////////////////////////////
 # Caption begins "Simulation results for Weibull $X$ from the full /////
-# cohort analysis and imputation approaches using the true survival ////
+# cohort analysis and imputation approaches using the estimated survival
 # function and adaptive quadrature versus the trapezoidal rule..." /////
 # //////////////////////////////////////////////////////////////////////
 
@@ -11,14 +11,24 @@ library(tidyr) # To gather wide tables
 library(kableExtra) # To format pretty tables
 library(ggplot2) # To make pretty plots
 
-# //////////////////////////////////////////////////////////////////////
-# Read in simulation results from GitHub ///////////////////////////////
-# //////////////////////////////////////////////////////////////////////
-
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/hybridCMI/main/Table-Data/data_Table1.csv")
-## Note: Simulations were run on random seed 114 (with 1000 reps per seed, per setting)
-## This information is captured in the "sim" variable which is of the form seed-replicate. 
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_Table1.csv")
+## Note: Simulations were run in parallel on random seeds 114-123 (with ~100 reps per seed, per setting)
+
+# //////////////////////////////////////////////////////////////////////
+# Get convergence numbers for footnote /////////////////////////////////
+# //////////////////////////////////////////////////////////////////////
+res |> 
+  summarize(reps_na_aq = sum(is.na(beta_aq)),
+            reps_na_tr = sum(is.na(beta_tr))
+  ) ## Just 24 replicates out of 12,000 did not converge
+
+res |> 
+  group_by(censoring, n) |> 
+  summarize(reps_na_aq = sum(is.na(beta_aq)),
+            reps_na_tr = sum(is.na(beta_tr))
+            ) |> 
+  arrange(desc(reps_na_aq)) ## Converged in $\geq 99.4\%$ of replicates per setting
 
 # //////////////////////////////////////////////////////////////////////
 # Summarize simulation results by setting //////////////////////////////
@@ -41,14 +51,14 @@ res_summ_long = res |>
                         no = ifelse(test = param == "beta", 
                                     yes = 0.5, 
                                     no = 0.25)
-                        ) 
-         ) |> 
+         ) 
+  ) |> 
   group_by(censoring, n, calc, param, truth) |> 
-  summarize(bias = mean(est - truth),
-            se = sd(est)) |> 
+  summarize(bias = mean(est - truth, na.rm = TRUE), # Exclude small number of replicates where Weibull didn't converge
+            se = sd(est, na.rm = TRUE)) |> # Exclude small number of replicates where Weibull didn't converge
   mutate(perc_bias = paste0("($", format(round(bias / truth * 100, 2), nsmall = 2), "$)"),
          bias = paste0("$", format(round(bias, 3), nsmall = 3), "$")
-         ) |> 
+  ) |> 
   ungroup() |> 
   select(param, censoring, n, calc, bias, perc_bias, se)
 
