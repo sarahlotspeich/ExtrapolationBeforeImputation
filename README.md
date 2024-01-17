@@ -8,31 +8,19 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 
 ## Tables 
 
-**Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the true survival function and adaptive quadrature up to infinity versus the trapezoidal rule up to the largest observed value, $W_{(n)}$.
-
-  - [Script (Run Simulations)](Sim-Scripts/Table1-Gold-Standard.R)
-  - [Script (Make Table)](Table-Scripts/Table1-Gold-Standard.R)
-  - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
-
-**Table 2.** Simulation results for Weibull $X$ from the full cohort analysis and imputation approaches using the estimated survival function.
+**Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and conditional mean imputation (CMI) approaches.
 
   - [Script (Run Simulations)](Sim-Scripts/Table2-Estimated-WeibullX.R)
   - [Script (Make Table)](Table-Scripts/Table2-Estimated-WeibullX.R)
   - [Data (Simulation Results)](Table-Data/data_Table2.csv)  
 
-**Table S1.** Simulation results for Weibull $X$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and imputation approaches using the true survival function and adaptive quadrature up to infinity versus the trapezoidal rule up to the largest observed value, $W_{(n)}$, assuming that $X$ was independent of $Z$.
-
-  - [Script (Run Simulations)](Sim-Scripts/TableS1-Gold-Standard-XindepZ.R)
-  - [Script (Make Table)](Table-Scripts/TableS1-Gold-Standard-XindepZ.R)
-  - [Data (Simulation Results)](Table-Data/data_TableS1.csv)  
-
-**Table S2.** Simulation results for Weibull $X$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and imputation approaches using the estimated survival function, assuming that $X$ was independent of $Z$.
+**Table S1.** Simulation results for Weibull $X$ independent of $Z$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and conditional mean imputation (CMI) approaches.
 
   - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
   - [Script (Make Table)](Table-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
   - [Data (Simulation Results)](Table-Data/data_TableS2.csv)  
 
-**Table S3.** Simulation results for log-normal $X$ from the full cohort analysis and imputation approaches using the estimated survival function and adaptive quadrature versus the trapezoidal rule.
+**Table S2.** Simulation results for log-normal $X$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and conditional mean imputation (CMI) approaches.
 
   - [Script (Run Simulations)](Sim-Scripts/TableS3-Estimated-LogNormalX.R)
   - [Script (Make Table)](Table-Scripts/TableS3-Estimated-LogNormalX.R)
@@ -72,12 +60,6 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
   - [Script (Make Figure)](Figure-Scripts/FigureS6-Extrapolation-Methods-Trapezoidal-Rule.R)
   - [Data (Simulation Results)](Figure-Data/data_FigureS6.csv)  
 
-**Figure S7.** When using the estimated survival function $\widehat{S}(x|z)$, conditional mean imputation with adaptive quadrature could be biased under severe censoring (e.g., $> 82\%$). This residual bias seemed to stem from the estimated survival function, since we saw virtually no bias across these same settings when using the true survival function $S(x|z)$ instead.
-
-  - [Script (Make Figure)](Figure-Scripts/FigureS7-Percent-Censored-vs-Bias.R) 
-
-Note: Figure S7 uses the data from **Tables 1 and 2**. (See above for details.) 
-
-**Figure S8.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate), which led to worse performance (i.e., higher bias) when calculating the conditional mean with the trapezoidal rule.
+**Figure S7.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate), which led to worse performance (i.e., higher bias) when calculating the conditional mean with the trapezoidal rule.
 
   - [Script (Make Figure)](Figure-Scripts/FigureS8-Weibull-vs-Log-Normal.R) 
