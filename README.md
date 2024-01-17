@@ -10,21 +10,21 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 
 **Table 1.** Simulation results for Weibull $X$ from the full cohort analysis and conditional mean imputation (CMI) approaches.
 
-  - [Script (Run Simulations)](Sim-Scripts/Table2-Estimated-WeibullX.R)
-  - [Script (Make Table)](Table-Scripts/Table2-Estimated-WeibullX.R)
-  - [Data (Simulation Results)](Table-Data/data_Table2.csv)  
+  - [Script (Run Simulations)](Sim-Scripts/Table1-Estimated-WeibullX.R)
+  - [Script (Make Table)](Table-Scripts/Table1-Estimated-WeibullX.R)
+  - [Data (Simulation Results)](Table-Data/data_Table1.csv)  
 
 **Table S1.** Simulation results for Weibull $X$ independent of $Z$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and conditional mean imputation (CMI) approaches.
 
-  - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
-  - [Script (Make Table)](Table-Scripts/TableS2-Estimated-WeibullX-XindepZ.R)
-  - [Data (Simulation Results)](Table-Data/data_TableS2.csv)  
+  - [Script (Run Simulations)](Sim-Scripts/TableS1-Estimated-WeibullX-XindepZ.R)
+  - [Script (Make Table)](Table-Scripts/TableS1-Estimated-WeibullX-XindepZ.R)
+  - [Data (Simulation Results)](Table-Data/data_TableS1.csv)  
 
 **Table S2.** Simulation results for log-normal $X$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and conditional mean imputation (CMI) approaches.
 
-  - [Script (Run Simulations)](Sim-Scripts/TableS3-Estimated-LogNormalX.R)
-  - [Script (Make Table)](Table-Scripts/TableS3-Estimated-LogNormalX.R)
-  - [Data (Simulation Results)](Table-Data/data_TableS3.csv)  
+  - [Script (Run Simulations)](Sim-Scripts/TableS2-Estimated-LogNormalX.R)
+  - [Script (Make Table)](Table-Scripts/TableS2-Estimated-LogNormalX.R)
+  - [Data (Simulation Results)](Table-Data/data_TableS2.csv)  
 
 ## Figures 
 
