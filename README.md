@@ -1,4 +1,4 @@
-# A hybrid approach to impute heavily censored covariates with their conditional means
+# Extrapolation before imputation reduces bias when imputing censored covariates
 
 This repository contains R code and simulation data to reproduce results from the [manuscript](https://arxiv.org/abs/2209.04716) by Lotspeich and Garcia (2022+). 
 
