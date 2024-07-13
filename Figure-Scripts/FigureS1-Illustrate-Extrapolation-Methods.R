@@ -101,7 +101,7 @@ weibull_loglik = function(alpha, lambda, t, I_event) {
   ll <- ll + n1 * log(alpha)
   return(- ll)
 }
-## Fnuction 2: the constrained log-likelihood for a Weibull 
+## Function 2: the constrained log-likelihood for a Weibull 
 constr_weibull_loglik = function(alpha, t, I_event, Xtilde, rho) {
   lambda <- - log(rho) / (Xtilde ^ exp(alpha))
   n1 <- sum(I_event)
