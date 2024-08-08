@@ -10,7 +10,7 @@ library(dplyr) # To wrangle data
 library(kableExtra) # To format pretty tables
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_Table1_R1_CSB.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_Table1_R1.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with ~100 reps per seed, per setting)
 
 # //////////////////////////////////////////////////////////////////////
@@ -19,14 +19,7 @@ res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/Extrapol
 res |> 
   summarize(reps_na_extrap = sum(is.na(beta_extrap)),
             reps_na_extrap_no = sum(is.na(beta_extrap_no))
-  ) ## 13 replicates out of 9,000 did not converge (~ 0.1%)
-
-res |> 
-  group_by(censoring, n) |> 
-  summarize(reps_na_extrap = sum(is.na(beta_extrap)),
-            reps_na_extrap_no = sum(is.na(beta_extrap_no))
-            ) |> 
-  arrange(desc(reps_na_extrap)) ## Converged in 99.7%+ of replicates per setting
+  ) ## No replicates out of 9,000 did not converge
 
 # //////////////////////////////////////////////////////////////////////
 # Summarize simulation results by setting //////////////////////////////
