@@ -1,0 +1,72 @@
+#########################BEGIN-PROLOG#########################
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-11
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-11
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-10
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-10
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-08
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-08
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-06
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-04
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-03
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+JobName   = CSI
+Account   = lotspeichgrp
+NodeList  = cpu-intel-03
+Resources = cpu=1,mem=64G,node=1,billing=16
+WorkDir   = /home/lotspes/ExtrapCMI/Rerun-Table1-CSI
+###########################END-PROLOG#########################
+SLURM_JOBID:  1633689
+SLURM_ARRAY_TASK_ID:  9
+SLURM_ARRAY_JOB_ID:  1633689
+Loading required package: survival
+Loading required package: expint
+Loading required package: magrittr
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: usethis
+ℹ SHA-1 hash of file is "3ded1d92d1ffeb6b1acc80d2c187718478b289f0"
