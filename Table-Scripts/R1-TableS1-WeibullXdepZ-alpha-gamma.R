@@ -1,62 +1,133 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Table S1 ///////////////////////////////////////////////////
-# Caption begins "Simulation results for $\pmb{\alpha}$ (the coefficient/
-# on censored Weibull $X$) from the full cohort analysis and ///////////
-# conditional mean imputation (CMI) approaches." ///////////////////////
+# Replicate Table 1 ////////////////////////////////////////////////////
+# Caption begins "Simulation results for Weibull $X$ from the full /////
+# cohort analysis and imputation approaches using the estimated survival
+# function and adaptive quadrature versus the trapezoidal rule..." /////
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
 library(dplyr) # To wrangle data
+library(tidyr) # To gather wide tables
 library(kableExtra) # To format pretty tables
+library(ggplot2) # To make pretty plots
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_Table1_rev.csv")
+#res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_Table1.csv")
+#res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_Table1_rerun.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_Table1_rerun_boot.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with ~100 reps per seed, per setting)
 
 # //////////////////////////////////////////////////////////////////////
 # Get convergence numbers for footnote /////////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 res |> 
-  summarize(reps_na_extrap = sum(is.na(alpha_extrap)),
-            reps_na_extrap_no = sum(is.na(alpha_extrap_no))
-  ) ## No replicates out of 9,000 did not converge
+  dplyr::summarize(reps_na_aq = sum(is.na(beta_aq)),
+            reps_na_tr = sum(is.na(beta_tr))
+  ) ## <= 32 replicates out of 12,000 did not converge (0.35%)
 
-# //////////////////////////////////////////////////////////////////////
-# Summarize simulation results by setting (alpha) //////////////////////
-# //////////////////////////////////////////////////////////////////////
-## Exclude small number of replicates where Weibull didn't converge (above)
-res_summ = res |> 
+res |> 
   group_by(censoring, n) |> 
-  summarize(bias_fc = mean(alpha_fc - 1, na.rm = TRUE), 
-            ese_fc = sd(alpha_fc, na.rm = TRUE),
-            bias_extrap = mean(alpha_extrap - 1, na.rm = TRUE), 
-            ese_extrap = sd(alpha_extrap, na.rm = TRUE), 
-            ase_extrap = mean(se_alpha_extrap, na.rm = TRUE), 
-            cp_extrap = mean((alpha_extrap - 1.96 * se_alpha_extrap) <= 1 & 
-                               1 <= (alpha_extrap + 1.96 * se_alpha_extrap), 
-                             na.rm = TRUE),
-            bias_extrap_no = mean(alpha_extrap_no - 1, na.rm = TRUE), 
-            ese_extrap_no = sd(alpha_extrap_no, na.rm = TRUE), 
-            ase_extrap_no = mean(se_alpha_extrap_no, na.rm = TRUE), 
-            cp_extrap_no = mean((alpha_extrap_no - 1.96 * se_alpha_extrap_no) <= 1 & 
-                               1 <= (alpha_extrap_no + 1.96 * se_alpha_extrap_no), 
-                             na.rm = TRUE)
+  dplyr::summarize(reps_na_aq = sum(is.na(beta_aq)),
+            reps_na_tr = sum(is.na(beta_tr))
             ) |> 
-  mutate(perc_bias_fc = paste0("($", format(round(bias_fc / 1 * 100, 2), nsmall = 2), "$)"),
-         perc_bias_extrap = paste0("($", format(round(bias_extrap / 1 * 100, 2), nsmall = 2), "$)"),
-         perc_bias_extrap_no = paste0("($", format(round(bias_extrap_no / 1 * 100, 2), nsmall = 2), "$)"),
-         censoring = factor(x = censoring, 
+  arrange(desc(reps_na_aq)) ## Converged in $\geq 98.3\%$ of replicates per setting
+
+# //////////////////////////////////////////////////////////////////////////////
+# Add coverage indicators for confidence intervals /////////////////////////////
+# //////////////////////////////////////////////////////////////////////////////
+res = res |> 
+  mutate(cov_alpha_aq = (alpha_aq - 1.96 * se_alpha_aq) <= 1 & 1 <= (alpha_aq + 1.96 * se_alpha_aq),
+         cov_beta_aq = (beta_aq - 1.96 * se_beta_aq) <= 0.5 & 0.5 <= (beta_aq + 1.96 * se_beta_aq),
+         cov_gamma_aq = (gamma_aq - 1.96 * se_gamma_aq) <= 0.25 & 0.25 <= (gamma_aq + 1.96 * se_gamma_aq),
+         cov_alpha_tr = (alpha_tr - 1.96 * se_alpha_tr) <= 1 & 1 <= (alpha_tr + 1.96 * se_alpha_tr),
+         cov_beta_tr = (beta_tr - 1.96 * se_beta_tr) <= 0.5 & 0.5 <= (beta_tr + 1.96 * se_beta_tr),
+         cov_gamma_tr = (gamma_tr - 1.96 * se_gamma_tr) <= 0.25 & 0.25 <= (gamma_tr + 1.96 * se_gamma_tr)
+         )
+
+
+# //////////////////////////////////////////////////////////////////////////////
+# Summarize simulation results by setting //////////////////////////////////////
+# //////////////////////////////////////////////////////////////////////////////
+## Bias and empirical standard errors ------------------------------------------
+bias_ese_long = res |> 
+  dplyr::select(-perc_censored, -starts_with(c("se_", "cov"))) |> # use package prefix to avoid conflict with MASS::select
+  gather(key = "param_calc", value = "est", -c(1:3)) |> 
+  mutate(calc = gsub(pattern = ".*_", replacement = "", x = param_calc),
+         calc = factor(x = calc, 
+                       levels = c("fc", "aq", "tr"),
+                       labels = c("Full Cohort", "Adaptive Quadrature", "Trapezoidal Rule")),
+         param = sub("_.*", "", param_calc),
+         censoring = factor(x = censoring,
                             levels = c("light", "heavy", "extra_heavy"), 
                             labels = c("Light", "Heavy", "Extra Heavy")),
-         re_extrap = ese_fc ^ 2 / ese_extrap ^ 2,
-         re_extrap_no = ese_fc ^ 2 / ese_extrap_no ^ 2,
+         truth = ifelse(test = param == "alpha", 
+                        yes = 1,
+                        no = ifelse(test = param == "beta", 
+                                    yes = 0.50, 
+                                    no = 0.25)
+         ) 
+  ) |> 
+  group_by(censoring, n, calc, param, truth) |> 
+  dplyr::summarize(bias = mean(est - truth, na.rm = TRUE), # Exclude small number of replicates where Weibull didn't converge
+            ese = sd(est, na.rm = TRUE)) |> # Exclude small number of replicates where Weibull didn't converge
+  mutate(perc_bias = paste0("($", format(round(bias / truth * 100, 2), nsmall = 2), "$)"),
+         bias = paste0("$", format(round(bias, 3), nsmall = 3), "$")
+  ) |> 
+  ungroup() |> 
+  select(param, censoring, n, calc, bias, perc_bias, ese)
+
+## Empirical coverage probabilities --------------------------------------------
+cp_long = res |> 
+  dplyr::select(sim, censoring, n, starts_with("cov")) |> # use package prefix to avoid conflict with MASS::select
+  gather(key = "param_calc", value = "cov", -c(1:3)) |> 
+  mutate(calc = gsub(pattern = ".*_", replacement = "", x = param_calc),
+         calc = factor(x = calc, 
+                       levels = c("fc", "aq", "tr"),
+                       labels = c("Full Cohort", "Adaptive Quadrature", "Trapezoidal Rule")),
+         param = sub("_.*", "", sub(".*cov_", "", param_calc)),
+         censoring = factor(x = censoring,
+                            levels = c("light", "heavy", "extra_heavy"), 
+                            labels = c("Light", "Heavy", "Extra Heavy"))
+  ) |> 
+  group_by(censoring, n, calc, param) |> 
+  dplyr::summarize(cp = mean(cov, na.rm = TRUE)) # Exclude small number of replicates where Weibull didn't converge
+
+# Unpivot results to get rows for each parameter (rather than columns)
+ase_long = res |> 
+  dplyr::select(sim, censoring, n, starts_with("se")) |> # use package prefix to avoid conflict with MASS::select
+  gather(key = "param_calc", value = "se", -c(1:3)) |> 
+  mutate(calc = gsub(pattern = ".*_", replacement = "", x = param_calc),
+         calc = factor(x = calc, 
+                       levels = c("fc", "aq", "tr"),
+                       labels = c("Full Cohort", "Adaptive Quadrature", "Trapezoidal Rule")),
+         param = sub("_.*", "", sub(".*se_", "", param_calc)),
+         censoring = factor(x = censoring,
+                            levels = c("light", "heavy", "extra_heavy"), 
+                            labels = c("Light", "Heavy", "Extra Heavy"))
+  ) |> 
+  group_by(censoring, n, calc, param) |> 
+  dplyr::summarize(ase = mean(se, na.rm = TRUE)) |> # Exclude small number of replicates where Weibull didn't converge
+  ungroup() |> 
+  select(param, censoring, n, calc, ase)
+
+# Merge bias, ESE, and ASE 
+res_summ_long = bias_ese_long |> 
+  full_join(ase_long) |> 
+  full_join(cp_long)
+
+# Then pivot them back out by method 
+res_summ_wide = res_summ_long |> 
+  pivot_wider(names_from = calc, 
+              values_from = c("bias", "perc_bias", "ese", "ase", "cp")) |> 
+  arrange(param, censoring) |> 
+  mutate(`re_Adaptive Quadrature` = `ese_Full Cohort` ^ 2 / `ese_Adaptive Quadrature` ^ 2,
+         `re_Trapezoidal Rule` = `ese_Full Cohort` ^ 2 / `ese_Trapezoidal Rule` ^ 2,
          mid1 = "", mid2 = "", mid3 = "") |> 
-  select(censoring, n, starts_with(c("bias", "perc_bias", "ese", "ase", "cp", "re")), everything()) |> 
-  arrange(censoring, n) |> 
-  select(censoring, n, mid1,
-         ends_with("_fc"), mid2, 
-         ends_with("_extrap"), mid3, 
-         ends_with("_extrap_no")) 
+  dplyr::select(censoring, n, param, mid1,
+                ends_with("Cohort"), mid2, 
+                ends_with("Quadrature"), mid3, 
+                ends_with("Rule")) |> 
+  dplyr::select(-`ase_Full Cohort`, -`cp_Full Cohort`)
 
 # //////////////////////////////////////////////////////////////////////
 # Format table for export to LaTex /////////////////////////////////////
@@ -68,62 +139,12 @@ format_num = function(num) {
 }
 
 # Format res_summ_wide for LaTex
-res_summ |> 
-  mutate_at(.vars = c("bias_fc", "ese_fc",
-                      "bias_extrap", "ese_extrap", "ase_extrap", "cp_extrap", "re_extrap",
-                      "bias_extrap_no", "ese_extrap_no", "ase_extrap_no", "cp_extrap_no", "re_extrap_no"), 
-            .funs = format_num) |>
-  kable(format = "latex", booktabs = TRUE, escape = FALSE, 
-        align = "llrcccccccrccccc") |> 
-  kable_styling() 
-## Note: For visual reasons, the \addlinespace were manually deleted in LaTex
-## And a \multicolumn used to separate the three parameters
-
-
-# //////////////////////////////////////////////////////////////////////
-# Summarize simulation results by setting (gamma) //////////////////////
-# //////////////////////////////////////////////////////////////////////
-## Exclude small number of replicates where Weibull didn't converge (above)
-res_summ = res |> 
-  group_by(censoring, n) |> 
-  summarize(bias_fc = mean(gamma_fc - 0.25, na.rm = TRUE), 
-            ese_fc = sd(gamma_fc, na.rm = TRUE),
-            bias_extrap = mean(gamma_extrap - 0.25, na.rm = TRUE), 
-            ese_extrap = sd(gamma_extrap, na.rm = TRUE), 
-            ase_extrap = mean(se_gamma_extrap, na.rm = TRUE), 
-            cp_extrap = mean((gamma_extrap - 1.96 * se_gamma_extrap) <= 0.25 & 
-                               0.25 <= (gamma_extrap + 1.96 * se_gamma_extrap), 
-                             na.rm = TRUE),
-            bias_extrap_no = mean(gamma_extrap_no - 0.25, na.rm = TRUE), 
-            ese_extrap_no = sd(gamma_extrap_no, na.rm = TRUE), 
-            ase_extrap_no = mean(se_gamma_extrap_no, na.rm = TRUE), 
-            cp_extrap_no = mean((gamma_extrap_no - 1.96 * se_gamma_extrap_no) <= 0.25 & 
-                                  0.25 <= (gamma_extrap_no + 1.96 * se_gamma_extrap_no), 
-                                na.rm = TRUE)
-  ) |> 
-  mutate(perc_bias_fc = paste0("($", format(round(bias_fc / 0.25 * 100, 2), nsmall = 2), "$)"),
-         perc_bias_extrap = paste0("($", format(round(bias_extrap / 0.25 * 100, 2), nsmall = 2), "$)"),
-         perc_bias_extrap_no = paste0("($", format(round(bias_extrap_no / 0.25 * 100, 2), nsmall = 2), "$)"),
-         censoring = factor(x = censoring, 
-                            levels = c("light", "heavy", "extra_heavy"), 
-                            labels = c("Light", "Heavy", "Extra Heavy")),
-         re_extrap = ese_fc ^ 2 / ese_extrap ^ 2,
-         re_extrap_no = ese_fc ^ 2 / ese_extrap_no ^ 2,
-         mid1 = "", mid2 = "", mid3 = "") |> 
-  select(censoring, n, starts_with(c("bias", "perc_bias", "ese", "ase", "cp", "re")), everything()) |> 
-  arrange(censoring, n) |> 
-  select(censoring, n, mid1,
-         ends_with("_fc"), mid2, 
-         ends_with("_extrap"), mid3, 
-         ends_with("_extrap_no")) 
-
-# //////////////////////////////////////////////////////////////////////
-# Format table for export to LaTex /////////////////////////////////////
-# //////////////////////////////////////////////////////////////////////
-res_summ |> 
-  mutate_at(.vars = c("bias_fc", "ese_fc",
-                      "bias_extrap", "ese_extrap", "ase_extrap", "cp_extrap", "re_extrap",
-                      "bias_extrap_no", "ese_extrap_no", "ase_extrap_no", "cp_extrap_no", "re_extrap_no"), 
+res_summ_wide |>
+  dplyr::filter(param != "beta") |> ## subset to alpha and gamma 
+  dplyr::select(-param) |> ## delete param column - ordering is alpha, beta, gamma
+  mutate_at(.vars = c("ese_Full Cohort", 
+                      "ese_Adaptive Quadrature", "ase_Adaptive Quadrature", "cp_Adaptive Quadrature",  "re_Adaptive Quadrature", 
+                      "ese_Trapezoidal Rule", "ase_Trapezoidal Rule", "cp_Trapezoidal Rule", "re_Trapezoidal Rule"),
             .funs = format_num) |>
   kable(format = "latex", booktabs = TRUE, escape = FALSE, 
         align = "llrcccccccrccccc") |> 
