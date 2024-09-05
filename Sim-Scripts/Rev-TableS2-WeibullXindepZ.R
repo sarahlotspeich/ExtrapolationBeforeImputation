@@ -19,7 +19,7 @@ reps = 100 ## We used a total of 1000, but see NOTES below
 # Choose seed to be used for each simulation setting
 args = commandArgs(TRUE)
 ## When running on the cluster, give each array a unique seed by adding the array ID to 11422
-start_sim_seed = 11422 + 100 * 0 #as.integer(args)
+start_sim_seed = 11422 + 100 * as.integer(args)
 
 # Number of bootstraps for CSI-B standard errors
 B = 1000
