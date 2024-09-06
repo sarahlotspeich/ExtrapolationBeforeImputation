@@ -16,7 +16,7 @@ generate_data = function(n, censoring = "light", distX = "weibull", XdepZ = TRUE
     } else if (distX == "lognormal") {
       x = rlnorm(n = n, meanlog = 0 + 0.05 * z, sdlog = 0.5)
     } else if (distX == "normal") {
-      x = rnorm(n = n, mean = 1.5 + 0.5 * z, sd = 0.5)
+      x = truncnorm::rtruncnorm(n = n, a = 0, b = Inf, mean = 1.5 + 0.5 * z, sd = 0.5)
     } else if (distX == "gamma") {
       x = rgamma(n = n, shape = 1.5, scale = 2 + 0.5 * z)
     } else if (distX == "t") {
