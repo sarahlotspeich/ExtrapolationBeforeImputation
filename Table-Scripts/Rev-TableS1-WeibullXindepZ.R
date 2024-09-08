@@ -1,8 +1,8 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Table 1 ////////////////////////////////////////////////////
-# Caption begins "Simulation results for Weibull $X$ from the full /////
-# cohort analysis and imputation approaches using the estimated survival
-# function and adaptive quadrature versus the trapezoidal rule..." /////
+# Replicate Table S1 ///////////////////////////////////////////////////
+# Caption "Simulation results for Weibull $X$ independent of $Z$ from //
+# the full cohort analysis (i.e., where all $n$ observations had ///////
+# uncensored $X$) and conditional mean imputation (CMI) approaches." ///
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
@@ -12,23 +12,60 @@ library(kableExtra) # To format pretty tables
 library(ggplot2) # To make pretty plots
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_TableS2_rev.csv")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Table-Data/data_TableS1_rev.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with ~100 reps per seed, per setting)
+
+# Standardize the conv_msg_aq 
+res = res |> 
+  mutate(conv_msg_aq = sub(pattern = ", ", replacement = "", x = conv_msg_aq), 
+         div_err = grepl(pattern = "Divergent", x = conv_msg_aq), 
+         round_err = grepl(pattern = "Roundoff", x = conv_msg_aq))
+
+# //////////////////////////////////////////////////////////////////////
+# Summarize computing times ////////////////////////////////////////////
+# //////////////////////////////////////////////////////////////////////
+## Overall average per-replicate computing times:
+res |> 
+  filter(!(round_err | div_err)) |> 
+  select(starts_with("time")) |> 
+  summarize_all(mean)
+### 16.2 seconds (extrapolated) vs. 0.1 (non-extrapolated)
+
+## By setting average per-replicate computing times:
+res |> 
+  group_by(n, censoring) |> 
+  select(starts_with("time")) |> 
+  summarize_all(mean)
+### For extrapolated CMI, computing time increased with sample size, 
+### but for all sample sizes extra heavy < light < heavy
+### Also, independent X and Z was faster than dependent X and Z
 
 # //////////////////////////////////////////////////////////////////////
 # Get convergence numbers for footnote /////////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 res |> 
-  dplyr::summarize(reps_na_aq = sum(is.na(beta_aq)),
-            reps_na_tr = sum(is.na(beta_tr))
-  ) ## <= 21 replicates out of 12,000 did not converge (0.18%)
+  summarize(reps_na_aq = sum(is.na(beta_aq)),
+            reps_na_tr = sum(is.na(beta_tr))) 
+## 10 replicates of Non-Extrapolated CMI out of 9,000 (0.1%) did not converge 
+### (all presumably due to Cox model)
+## 14 replicates of Extrapolated CMI out of 9,000 (0.2%) did not converge 
+### (presumably 10 due to the Cox model; 
+### the other 4 due to roundoff or potential divergence error)
 
 res |> 
   group_by(censoring, n) |> 
   dplyr::summarize(reps_na_aq = sum(is.na(beta_aq)),
-            reps_na_tr = sum(is.na(beta_tr))
-            ) |> 
-  arrange(desc(reps_na_aq)) ## Converged in $\geq 99.6\%$ of replicates per setting
+                   reps_na_tr = sum(is.na(beta_tr))
+  ) |> 
+  arrange(desc(reps_na_aq)) 
+## Extrapolated CMI was successful in $\geq 99.4\%$ of replicates per setting
+## Non-Extrapolated CMI was successful in $\geq 99.8\%$ of replicates per setting
+
+## The roundoff and potential divergence errors were all in n = 100, extra heavy censoring setting
+res |> 
+  filter(div_err | round_err) |> 
+  group_by(censoring, n, div_err, round_err) |> 
+  summarize(num = n())
 
 # //////////////////////////////////////////////////////////////////////////////
 # Add coverage indicators for confidence intervals /////////////////////////////
@@ -40,15 +77,14 @@ res = res |>
          cov_alpha_tr = (alpha_tr - 1.96 * se_alpha_tr) <= 1 & 1 <= (alpha_tr + 1.96 * se_alpha_tr),
          cov_beta_tr = (beta_tr - 1.96 * se_beta_tr) <= 0.5 & 0.5 <= (beta_tr + 1.96 * se_beta_tr),
          cov_gamma_tr = (gamma_tr - 1.96 * se_gamma_tr) <= 0.25 & 0.25 <= (gamma_tr + 1.96 * se_gamma_tr)
-         )
-
+  )
 
 # //////////////////////////////////////////////////////////////////////////////
 # Summarize simulation results by setting //////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////
 ## Bias and empirical standard errors ------------------------------------------
 bias_ese_long = res |> 
-  dplyr::select(-perc_censored, -starts_with(c("se_", "cov"))) |> # use package prefix to avoid conflict with MASS::select
+  dplyr::select(-perc_censored, -starts_with(c("se_", "cov", "time")), -ends_with("err"), -conv_msg_aq) |> # use package prefix to avoid conflict with MASS::select
   gather(key = "param_calc", value = "est", -c(1:3)) |> 
   mutate(calc = gsub(pattern = ".*_", replacement = "", x = param_calc),
          calc = factor(x = calc, 
@@ -67,7 +103,7 @@ bias_ese_long = res |>
   ) |> 
   group_by(censoring, n, calc, param, truth) |> 
   dplyr::summarize(bias = mean(est - truth, na.rm = TRUE), # Exclude small number of replicates where Weibull didn't converge
-            ese = sd(est, na.rm = TRUE)) |> # Exclude small number of replicates where Weibull didn't converge
+                   ese = sd(est, na.rm = TRUE)) |> # Exclude small number of replicates where Weibull didn't converge
   mutate(perc_bias = paste0("($", format(round(bias / truth * 100, 2), nsmall = 2), "$)"),
          bias = paste0("$", format(round(bias, 3), nsmall = 3), "$")
   ) |> 

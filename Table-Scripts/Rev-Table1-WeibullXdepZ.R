@@ -1,8 +1,8 @@
 # //////////////////////////////////////////////////////////////////////
 # Replicate Table 1 ////////////////////////////////////////////////////
-# Caption begins "Simulation results for Weibull $X$ from the full /////
-# cohort analysis and imputation approaches using the estimated survival
-# function and adaptive quadrature versus the trapezoidal rule..." /////
+# Caption "Simulation results for Weibull $X$ dependent on $Z$ from ////
+# the full cohort analysis (i.e., where all $n$ observations had ///////
+# uncensored $X$) and conditional mean imputation (CMI) approaches." ///
 # //////////////////////////////////////////////////////////////////////
 
 # Load packages
