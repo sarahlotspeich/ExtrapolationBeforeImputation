@@ -46,7 +46,8 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       # Loop over the three extrapolation methods
       for (interp in c("cf", "m")) {
         ## Create imputed dataset
-        imp_dat = cmi_sp(W = "w", Delta = "d", Z = "z", data = dat, 
+        imp_dat = cmi_sp(imputation_model = Surv(time = w, event = d) ~ z, 
+                         data = dat, 
                          trapezoidal_rule = FALSE, ## approximate integral using adaptive quadrature
                          surv_between = interp, ## Breslow's estimator is carry-forward interpolated
                          surv_beyond = "w") ## and extrapolated using the Weibull extension

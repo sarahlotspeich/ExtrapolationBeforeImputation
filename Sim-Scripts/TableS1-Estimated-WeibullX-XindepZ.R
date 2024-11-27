@@ -51,7 +51,8 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       
       # Method 2: CMI using adaptive quadrature 
       ## Create imputed dataset
-      imp_dat = cmi_sp(W = "w", Delta = "d", Z = "z", data = dat, 
+      imp_dat = cmi_sp(imputation_model = Surv(time = w, event = d) ~ z, 
+                       data = dat, 
                        trapezoidal_rule = FALSE, ## approximate integral using adaptive quadrature
                        surv_between = "cf", ## Breslow's estimator is carry-forward interpolated
                        surv_beyond = "w") ## and extrapolated using the Weibull extension
@@ -63,7 +64,8 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       }
       
       # Method 3: CMI using trapezoidal rule
-      imp_dat = cmi_sp(W = "w", Delta = "d", Z = "z", data = dat, 
+      imp_dat = cmi_sp(imputation_model = Surv(time = w, event = d) ~ z, 
+                       data = dat, 
                        trapezoidal_rule = TRUE, ## approximate integral using adaptive quadrature
                        surv_between = "cf", ## Breslow's estimator is carry-forward interpolated
                        surv_beyond = "w") ## and extrapolated using the Weibull extension
