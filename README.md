@@ -17,8 +17,8 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 **Table 2.** Simulation results for $\hat{\beta}$ under various distributions of $X$ dependent on $Z$ from the full cohort analysis (i.e., where all $n$ observations had uncensored $X$) and conditional mean imputation (CMI) approaches.
 
   - [Script (Run Simulations with Gamma Distribution)](Sim-Scripts/Rev-Table2-Misspec-Gamma.R)
-  - [Script (Run Simulations with Gamma Distribution)](Sim-Scripts/Rev-Table2-Misspec-LogNormal.R)
-  - [Script (Run Simulations with Gamma Distribution)](Sim-Scripts/Rev-Table2-Misspec-Normal.R)
+  - [Script (Run Simulations with Log-Normal Distribution)](Sim-Scripts/Rev-Table2-Misspec-LogNormal.R)
+  - [Script (Run Simulations with Normal Distribution)](Sim-Scripts/Rev-Table2-Misspec-Normal.R)
   - [Script (Make Table)](Table-Scripts/Rev-Table2-Misspec.R)
   - [Data (Simulation Results - Smaller Absolute Tolerance)](Table-Data/data_Table2_rev.csv)
   - [Data (Simulation Results - Larger Absolute Tolerance)](Table-Data/data_Table2_rev_absol1E2.csv)  
