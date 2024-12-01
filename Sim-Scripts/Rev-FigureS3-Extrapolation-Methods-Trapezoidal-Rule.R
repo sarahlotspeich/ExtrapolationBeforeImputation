@@ -62,7 +62,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       
       # Save results
       write.csv(x = sett_res, 
-                file = paste0("FigureS6_", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
+                file = paste0("FigureS3_", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
                 row.names = F)
     }
   }

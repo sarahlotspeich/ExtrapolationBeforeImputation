@@ -1,5 +1,5 @@
 # /////////////////////////////////////////////////////////////////////////
-# Run simulation results for Figure S5 ////////////////////////////////////
+# Run simulation results for Figure S1 ////////////////////////////////////
 # Compare CMI based on estimated survival function and adaptive ///////////
 # quadrature w/ different interpolation methods for Weibull X /////////////
 # /////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       
       # Save results
       write.csv(x = sett_res, 
-                file = paste0("FigureS5_", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
+                file = paste0("FigureS1_", censoring, "_n", n, "_seed", sim_seed, ".csv"), 
                 row.names = F)
     }
   }

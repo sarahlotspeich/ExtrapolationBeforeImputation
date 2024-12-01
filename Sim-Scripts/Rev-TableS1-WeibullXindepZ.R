@@ -141,7 +141,7 @@ for (censoring in c("light", "heavy", "extra_heavy")) {
       
       # Save results
       write.csv(x = sett_res, 
-                file = paste0("rev_tableS2_", censoring, "_n", n, "_seed", start_sim_seed, ".csv"), 
+                file = paste0("rev_tableS1_", censoring, "_n", n, "_seed", start_sim_seed, ".csv"), 
                 row.names = F)
     }
   }
