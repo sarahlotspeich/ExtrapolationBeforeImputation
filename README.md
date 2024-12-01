@@ -31,37 +31,29 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 
 ## Figures 
 
-**Figure S1.** Illustration of the four extrapolation methods for a step survival function $\widehat{S}(t)$ in simulated data.
+**Figure S1.** Interpolating Breslow's estimator $\widehat{S}_0(t)$ between uncensored values with either of the two interpolation methods offered similar bias and efficiency for $\hat{\beta}$ in extrapolated conditional mean imputation. Between uncensored values, $\widehat{S}_0(\cdot)$ was either be carried forward from the last uncensored value or taken as the mean of the uncensored values immediately before and after. The dashed line denotes the true parameter value, $\beta = 0.5$. Extrapolated CMI using either imputation method was successful in all but 44 replications out of 9000; these few replications encountered errors with numerical integration or non-convergence with the Cox model. Data were simulated following Section 3.1.
 
-  - [Script (Make Figure)](Figure-Scripts/FigureS1-Illustrate-Extrapolation-Methods.R)
+  - [Script (Run Simulations)](Sim-Scripts/Rev-FigureS1-Interpolation-Methods.R)
+  - [Script (Make Figure)](Figure-Scripts/Rev-FigureS1-Interpolation-Methods.R)
+  - [Data (Simulation Results)](Figure-Data/rev_data_figureS1.csv)  
 
-**Figure S2.** We explored light ($\sim 17\%$), heavy ($\sim 49\%$), and extra heavy ($\sim 82\%$) censoring in Weibull $X$, induced by generating $C$ from an exponential distribution with rates $= 0.5$, $2.9$, and $20$, respectively.
+**Figure S2.** Illustration of the four extrapolation methods for a step survival function $\widehat{S}(t)$ in simulated data. The shaded area represents values of $t > \widetilde{X}$ (the largest uncensored value), where extrapolation is needed.
 
-  - [Script (Make Figure)](Figure-Scripts/FigureS2-Percent-Censored.R)
-  
-**Figure S3.** With Weibull $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with the Weibull extension offered the lowest bias and best efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
+  - [Script (Make Figure)](Figure-Scripts/Rev-FigureS2-Illustrate-Extrapolation-Methods.R)
 
-  - [Script (Run Simulations)](Sim-Scripts/FigureS3-Extrapolation-Methods-Weibull.R)
-  - [Script (Make Figure)](Figure-Scripts/FigureS3-Extrapolation-Methods-Weibull.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS3.csv)  
+**Figure S3.** Extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ to the overall largest value $X_{(n)}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in non-extrapolated conditional mean imputation using the trapezoidal rule. The dashed line denotes the true parameter value, $\beta = 0.5$. Data were simulated following Section 3.1.
 
-**Figure S4.** With log-normal $X$, extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature.
+  - [Script (Run Simulations)](Sim-Scripts/Rev-FigureS3-Extrapolation-Methods-Trapezoidal-Rule.R)
+  - [Script (Make Figure)](Figure-Scripts/Rev-FigureS3-Extrapolation-Methods-Trapezoidal-Rule.R)
+  - [Data (Simulation Results)](Figure-Data/rev_data_figureS3.csv) 
 
-  - [Script (Run Simulations)](Sim-Scripts/FigureS4-Extrapolation-Methods-Log-Normal.R)
-  - [Script (Make Figure)](Figure-Scripts/FigureS4-Extrapolation-Methods-Log-Normal.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS4.csv)  
+**Figure S4.** In our simulations with Weibull $X$, we explored light ($\sim 17\%$), heavy ($\sim 49\%$), and extra heavy ($\sim 78\%$) censoring in $X$ by generating $C$ from an exponential distribution with rates $= 0.23$, $2$, and $10$, respectively.
 
-**Figure S5.** Interpolating Breslow's estimator $\widehat{S}_0(t)$ between uncensored values with either of the two interpolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with adaptive quadrature. 
+  - [Script (Make Figure)](Figure-Scripts/Rev-FigureS4-Percent-Censored.R)
 
-  - [Script (Run Simulations)](Sim-Scripts/FigureS5-Interpolation-Methods.R)
-  - [Script (Make Figure)](Figure-Scripts/FigureS5-Interpolation-Methods.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS5.csv)  
+**Figure S5.** Comparison of the probability density functions (**A**) and hazard functions (**B**) of the different distributions considered for the censored covariate $X$ in Sections 3.2 and 3.3.
 
-**Figure S6.** Extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in conditional mean imputation with the trapezoidal rule.
-
-  - [Script (Run Simulations)](Sim-Scripts/FigureS6-Extrapolation-Methods-Trapezoidal-Rule.R)
-  - [Script (Make Figure)](Figure-Scripts/FigureS6-Extrapolation-Methods-Trapezoidal-Rule.R)
-  - [Data (Simulation Results)](Figure-Data/data_FigureS6.csv)  
+  - [Script (Make Figure)](Figure-Scripts/Rev-FigureS5-Weibull-vs-LogNormal-vs-Gamma.R)
 
 **Figure S7.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate), which led to worse performance (i.e., higher bias) when calculating the conditional mean with the trapezoidal rule.
 
