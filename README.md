@@ -41,7 +41,7 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 
   - [Script (Make Figure)](Figure-Scripts/Rev-FigureS2-Illustrate-Extrapolation-Methods.R)
 
-**Figure S3.** Extrapolating Breslow's estimator $\widehat{S}_0(t)$ beyond the largest uncensored value $\widetilde{X}$ to the overall largest value $X_{(n)}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in non-extrapolated conditional mean imputation using the trapezoidal rule. The dashed line denotes the true parameter value, $\beta = 0.5$. Data were simulated following Section 3.1.
+**Figure S3.** Extrapolating Breslow's estimator beyond the largest uncensored value $\widetilde{X}$ to the overall largest value $X_{(n)}$ with any of the three extrapolation methods offered similar bias and efficiency for $\hat{\beta}$ in non-extrapolated conditional mean imputation using the trapezoidal rule. The dashed line denotes the true parameter value, $\beta = 0.5$. Data were simulated following Section 3.1.
 
   - [Script (Run Simulations)](Sim-Scripts/Rev-FigureS3-Extrapolation-Methods-Trapezoidal-Rule.R)
   - [Script (Make Figure)](Figure-Scripts/Rev-FigureS3-Extrapolation-Methods-Trapezoidal-Rule.R)
