@@ -17,7 +17,7 @@ library(wesanderson) # For colors
 # //////////////////////////////////////////////////////////////////////
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Figure-Data/rev_data_figureS3")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Figure-Data/rev_data_figureS3.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with 100 reps per seed, per setting)
 ## This information is captured in the "sim" variable which is of the form "seed-replicate." 
 

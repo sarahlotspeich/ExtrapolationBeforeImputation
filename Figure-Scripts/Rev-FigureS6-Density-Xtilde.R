@@ -150,4 +150,4 @@ plot_c = ggplot() +
 ggpubr::ggarrange(plot_a, plot_b, plot_c, common.legend = TRUE, ncol = 1, labels = "AUTO")
 
 # Save as 10" wide x 10" tall
-ggsave("Rev_FigureS8.png", width = 10, height = 10, units = "in")
+ggsave("Rev_FigureS6.png", width = 10, height = 10, units = "in")

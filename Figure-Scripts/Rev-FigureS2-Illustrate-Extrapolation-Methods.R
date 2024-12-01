@@ -1,5 +1,5 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Figure S1 in Supplementary Materials  //////////////////////
+# Replicate Figure S2 in Supplementary Materials  //////////////////////
 # Illustration of the four extrapolation methods for a step ////////////
 # survival function $\widehat{S}(t)$ in simulated data...." ////////////
 # //////////////////////////////////////////////////////////////////////
@@ -162,4 +162,4 @@ data |>
   scale_linetype(name = "Extrapolation Method:")
 
 # Save as 10" wide x 6" tall
-ggsave("FigureS1.png", width = 10, height = 6, units = "in")
+ggsave("FigureS2.png", width = 10, height = 6, units = "in")

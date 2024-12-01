@@ -1,5 +1,5 @@
 # //////////////////////////////////////////////////////////////////////
-# Replicate Figure S2 in Supplementary Materials  //////////////////////
+# Replicate Figure S1 in Supplementary Materials  //////////////////////
 # Caption begins "Interpolating Breslow's estimator $\widehat{S}_0(t)$ /
 # between uncensored values with either of the two interpolation ///////
 # methods offered similar bias and efficiency ..." /////////////////////
@@ -17,7 +17,7 @@ library(wesanderson) # For colors
 # //////////////////////////////////////////////////////////////////////
 
 # Read in simulation results 
-res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Figure-Data/rev_data_figureS2")
+res = read.csv(file = "https://raw.githubusercontent.com/sarahlotspeich/ExtrapolationBeforeImputation/main/Figure-Data/rev_data_figureS1.csv")
 ## Note: Simulations were run in parallel on random seeds 114-123 (with 100 reps per seed, per setting)
 ## This information is captured in the "sim" variable which is of the form seed-replicate. 
 
@@ -55,7 +55,7 @@ beta_res |>
   ylab(TeX("Parameter Estimate $\\hat{\\beta}$")) 
 
 # Save as 10" wide x 10" tall
-ggsave("Rev_FigureS2.png", width = 10, height = 10, units = "in")
+ggsave("Rev_FigureS1.png", width = 10, height = 10, units = "in")
 
 ## Note: 44 rows will be removed because beta is NA 
 beta_res |> 
