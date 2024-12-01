@@ -53,8 +53,8 @@ Each of the "Script (Run Simulations)" files is coded to run 1 replication of ea
 
 **Figure S5.** Comparison of the probability density functions (**A**) and hazard functions (**B**) of the different distributions considered for the censored covariate $X$ in Sections 3.2 and 3.3.
 
-  - [Script (Make Figure)](Figure-Scripts/Rev-FigureS5-Weibull-vs-LogNormal-vs-Gamma.R)
+  - [Script (Make Figure)](Figure-Scripts/Rev-FigureS5-DistX.R)
 
-**Figure S7.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate), which led to worse performance (i.e., higher bias) when calculating the conditional mean with the trapezoidal rule.
+**Figure S6.** Due to the Weibull distribution's skewness, higher censoring rates led to smaller values of $W_{(n)}$ (the maximum of the observed covariate used as the integral's upper bound by the trapezoidal rule). With smaller values of $W_{(n)}$, the trapezoidal rule was cutting off more of the survival function, leading to worse performance (i.e., higher bias) with non-extrapolated conditional mean imputation. \textbf{A}, \textbf{B}, and \textbf{C} are the empirical densities of $W_{(n)}$ when $X$ was generated from a Weibull, log-normal, and gamma distribution, respectively, under light, heavy, or extra heavy censoring.
 
-  - [Script (Make Figure)](Figure-Scripts/FigureS8-Weibull-vs-Log-Normal.R) 
+  - [Script (Make Figure)](Figure-Scripts/Rev-FigureS6-Density-Xtilde.R) 
